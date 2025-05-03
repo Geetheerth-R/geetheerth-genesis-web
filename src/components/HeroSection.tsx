@@ -13,22 +13,22 @@ export function HeroSection() {
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-tech-red/10 blur-3xl animate-pulse-glow animation-delay-1000"></div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 container">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 container py-0 my-[38px]">
         <div className="flex flex-col justify-center">
           <div className={`transition-all duration-1000 delay-300 transform ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
-            <p className="text-tech-cyan mb-1 font-medium">
+            <p className="text-tech-cyan mb-1 font-medium mx-0 my-[17px]">
               Hello, I am
             </p>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold font-poppins mb-4 py-px">
-              <span className="hero-gradient animate-text-shimmer bg-[length:200%_auto] text-5xl">
+              <span className="hero-gradient animate-text-shimmer bg-[length:200%_auto] text-4xl">
                 Geetheerth R
               </span>
             </h1>
-            <p className="text-2xl font-medium text-muted-foreground mb-6 py-px md:text-xl">
+            <p className="font-medium text-muted-foreground mb-6 py-px md:text-xl text-sm">
               Computer Science &{" "}
               <span className="text-primary">Engineering Student</span>
             </p>
-            <p className="text-lg text-muted-foreground max-w-lg mb-8">
+            <p className="text-muted-foreground max-w-lg mb-8 text-base">
               Exploring the frontiers of technology through innovative solutions,
               creative problem-solving, and continuous learning.
             </p>
@@ -79,9 +79,9 @@ export function HeroSection() {
       </div>
 
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <Button variant="ghost" size="icon" className="rounded-full w-12 h-12 border border-primary/20" onClick={() => document.getElementById("about")?.scrollIntoView({
+        <Button variant="ghost" size="icon" onClick={() => document.getElementById("about")?.scrollIntoView({
         behavior: "smooth"
-      })}>
+      })} className="rounded-full w-12 h-12 border border-primary/20 py-0 my-0 mx-[240px]">
           <ArrowDown size={20} />
         </Button>
       </div>
