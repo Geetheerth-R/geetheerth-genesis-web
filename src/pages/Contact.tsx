@@ -51,7 +51,7 @@ const Contact = () => {
       <main className="flex-grow pt-24 pb-16">
         <div className="container mx-auto">
           <div className="flex flex-col items-center text-center mb-12">
-            <h1 className="text-4xl font-bold mb-4 font-poppins">Get In Touch</h1>
+            <h1 className="font-bold mb-4 font-poppins text-3xl">Get In Touch</h1>
             <p className="text-muted-foreground max-w-2xl">
               Have a question or want to work together? Feel free to reach out using the contact form below or through any of the provided channels.
             </p>
