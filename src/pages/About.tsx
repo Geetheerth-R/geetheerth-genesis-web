@@ -12,7 +12,7 @@ const About = () => {
             <div className="md:col-span-1">
               <div className="bg-dark-100 rounded-xl p-6 sticky top-24">
                 <div className="aspect-square rounded-xl bg-gradient-to-br from-tech-blue to-tech-purple mb-4 overflow-hidden">
-                  <img alt="Geetheerth R" src="/lovable-uploads/9ec516fd-ca37-4107-8caf-b784f177ab6e.jpg" className="w-full h-full mix-blend-overlay object-cover" />
+                  <img alt="Geetheerth R" src="/lovable-uploads/9ec516fd-ca37-4107-8caf-b784f177ab6e.jpg" className="w-full h-full object-cover" />
                 </div>
                 <h2 className="text-xl font-bold mb-2">Geetheerth R</h2>
                 <p className="text-muted-foreground">Computer Science & Engineering Student</p>
