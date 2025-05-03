@@ -29,28 +29,6 @@ const projects = [
     github: "https://github.com",
     demo: "https://demo.com",
     featured: true
-  },
-  {
-    title: "Weather Forecast App",
-    description: "Real-time weather forecasting application with location-based services using weather APIs.",
-    tech: ["JavaScript", "OpenWeatherMap API", "HTML/CSS"],
-    image: "https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=600&h=400&fit=crop",
-    github: "https://github.com"
-  },
-  {
-    title: "E-commerce Platform",
-    description: "A full-stack e-commerce solution with product management, cart functionality, and payment integration.",
-    tech: ["React", "Redux", "Node.js", "Stripe"],
-    image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=600&h=400&fit=crop",
-    github: "https://github.com",
-    demo: "https://demo.com"
-  },
-  {
-    title: "Task Management Tool",
-    description: "A Kanban-style productivity application for teams to organize and track project tasks.",
-    tech: ["Angular", "TypeScript", "Firebase"],
-    image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=600&h=400&fit=crop",
-    github: "https://github.com"
   }
 ];
 
