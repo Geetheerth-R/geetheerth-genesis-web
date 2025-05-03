@@ -20,12 +20,13 @@ export function ThemeSwitcher() {
       variant="ghost"
       size="icon"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="rounded-full w-9 h-9"
+      className="rounded-full w-9 h-9 transition-colors"
+      aria-label="Toggle theme"
     >
       {theme === "dark" ? (
-        <Sun size={18} className="text-yellow-400" />
+        <Sun size={18} className="text-yellow-400 hover:text-yellow-300 transition-colors" />
       ) : (
-        <Moon size={18} className="text-tech-blue" />
+        <Moon size={18} className="text-tech-blue hover:text-tech-purple transition-colors" />
       )}
       <span className="sr-only">Toggle theme</span>
     </Button>

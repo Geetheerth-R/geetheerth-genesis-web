@@ -7,13 +7,13 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 210 30% 98%;
     --foreground: 224 71% 4%;
     --card: 0 0% 100%;
     --card-foreground: 224 71% 4%;
     --popover: 0 0% 100%;
     --popover-foreground: 224 71% 4%;
-    --primary: 262 80% 50%;
+    --primary: 210 100% 40%;
     --primary-foreground: 210 20% 98%;
     --secondary: 220 14% 96%;
     --secondary-foreground: 220 32% 18%;
@@ -25,7 +25,7 @@
     --destructive-foreground: 210 20% 98%;
     --border: 220 13% 91%;
     --input: 220 13% 91%;
-    --ring: 262 80% 50%;
+    --ring: 210 100% 40%;
     --radius: 1rem;
   }
 
@@ -78,7 +78,8 @@
   }
   
   .glass-card {
-    @apply bg-dark-100/60 backdrop-blur-md border border-white/10 shadow-xl;
+    @apply dark:bg-dark-100/60 dark:backdrop-blur-md dark:border-white/10 dark:shadow-xl 
+           light:bg-white/80 light:backdrop-blur-md light:border-gray-200 light:shadow-lg;
   }
 }
 
