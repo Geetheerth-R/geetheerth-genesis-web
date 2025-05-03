@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 import { Button } from "@/components/ui/button";
-import { Menu } from "lucide-react";
+import { Menu, FileImage, Download } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useTheme } from "./ThemeProvider";
 
@@ -102,7 +102,8 @@ export function Header() {
                 : "bg-tech-blue hover:bg-blue-600"
             }`}
           >
-            <a href="/resume.pdf" download="Geetheerth_R_Resume.pdf">
+            <a href="/lovable-uploads/f6a5e962-f7a3-4685-9f92-5df2980928cd.png" download="Geetheerth_R_Resume.png" className="flex items-center gap-2">
+              <Download size={16} />
               Resume
             </a>
           </Button>
@@ -133,8 +134,9 @@ export function Header() {
                     {item.name}
                   </Link>
                 ))}
-                <Button asChild className="mt-4 rounded-lg">
-                  <a href="/resume.pdf" download="Geetheerth_R_Resume.pdf">
+                <Button asChild className="mt-4 rounded-lg flex items-center gap-2">
+                  <a href="/lovable-uploads/f6a5e962-f7a3-4685-9f92-5df2980928cd.png" download="Geetheerth_R_Resume.png">
+                    <Download size={16} />
                     Resume
                   </a>
                 </Button>
