@@ -78,7 +78,7 @@ const Contact = () => {
                     <Phone className="w-5 h-5 mr-4 text-tech-purple mt-1" />
                     <div>
                       <h3 className="font-medium">Phone</h3>
-                      <p className="text-muted-foreground">+91 98765 43210</p>
+                      <p className="text-muted-foreground">+91 81229 60345</p>
                     </div>
                   </div>
                   
@@ -111,7 +111,7 @@ const Contact = () => {
               </div>
               
               <div className="mt-8 bg-dark-100 rounded-xl p-6 shadow-lg">
-                <h2 className="text-xl font-semibold mb-4 text-tech-purple">Office Hours</h2>
+                <h2 className="text-xl font-semibold mb-4 text-tech-purple"> Working Hours</h2>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
                     <span>Monday - Friday</span>
@@ -195,16 +195,12 @@ const Contact = () => {
                   
                   <div>
                     <h3 className="font-medium text-tech-purple">Are you available for internship opportunities?</h3>
-                    <p className="text-sm text-muted-foreground mt-1">
-                      Yes, I'm actively looking for internship opportunities in software development, machine learning, and related fields.
-                    </p>
+                    <p className="text-sm text-muted-foreground mt-1">Yes, I'm actively looking for internship opportunities in software development, machine learning, and embedded systems.</p>
                   </div>
                   
                   <div>
-                    <h3 className="font-medium text-tech-red">How quickly do you respond to inquiries?</h3>
-                    <p className="text-sm text-muted-foreground mt-1">
-                      I typically respond to all messages within 24-48 hours, often sooner for urgent inquiries.
-                    </p>
+                    <h3 className="font-medium text-tech-red">How quickly do you respond to the mail?</h3>
+                    <p className="text-sm text-muted-foreground mt-1">I typically respond to all messages within 24-48 hours.</p>
                   </div>
                 </div>
               </div>
