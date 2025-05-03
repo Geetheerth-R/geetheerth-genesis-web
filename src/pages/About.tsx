@@ -1,11 +1,8 @@
-
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
-
 const About = () => {
-  return (
-    <div className="min-h-screen flex flex-col">
+  return <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-grow pt-24 pb-16">
         <div className="container mx-auto">
@@ -15,11 +12,7 @@ const About = () => {
             <div className="md:col-span-1">
               <div className="bg-dark-100 rounded-xl p-6 sticky top-24">
                 <div className="aspect-square rounded-xl bg-gradient-to-br from-tech-blue to-tech-purple mb-4 overflow-hidden">
-                  <img 
-                    src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&h=600&fit=crop" 
-                    alt="Geetheerth R" 
-                    className="w-full h-full object-cover mix-blend-overlay"
-                  />
+                  <img alt="Geetheerth R" src="/lovable-uploads/9ec516fd-ca37-4107-8caf-b784f177ab6e.jpg" className="w-full h-full mix-blend-overlay object-cover" />
                 </div>
                 <h2 className="text-xl font-bold mb-2">Geetheerth R</h2>
                 <p className="text-muted-foreground">Computer Science & Engineering Student</p>
@@ -93,8 +86,6 @@ const About = () => {
         </div>
       </main>
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default About;
