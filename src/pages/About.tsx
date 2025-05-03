@@ -6,7 +6,7 @@ const About = () => {
       <Header />
       <main className="flex-grow pt-24 pb-16">
         <div className="container mx-auto">
-          <h1 className="text-4xl font-bold mb-8 font-poppins">About Me</h1>
+          <h1 className="font-bold mb-8 font-poppins text-3xl">About Me</h1>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="md:col-span-1">
