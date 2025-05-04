@@ -52,7 +52,7 @@ export function HeroSection() {
                   <div className="w-12 h-12 bg-tech-blue/20 rounded-full flex items-center justify-center mb-2">
                     <span className="text-tech-blue text-xl font-bold">AI</span>
                   </div>
-                  <p className="text-sm mt-2">Machine Learning</p>
+                  <p className="text-sm mt-2">Artificial Intelligence</p>
                 </div>
                 <div className="bg-dark-200 p-4 rounded-xl flex flex-col items-center justify-center text-center animate-float animation-delay-500">
                   <div className="w-12 h-12 bg-tech-purple/20 rounded-full flex items-center justify-center mb-2">
@@ -62,15 +62,15 @@ export function HeroSection() {
                 </div>
                 <div className="bg-dark-200 p-4 rounded-xl flex flex-col items-center justify-center text-center animate-float animation-delay-1000">
                   <div className="w-12 h-12 bg-tech-red/20 rounded-full flex items-center justify-center mb-2">
-                    <span className="text-tech-red text-xl font-bold">DB</span>
+                    <span className="text-tech-red text-xl font-bold">ES</span>
                   </div>
-                  <p className="text-sm mt-2">Database</p>
+                  <p className="text-sm mt-2">Embedded Systems</p>
                 </div>
                 <div className="bg-dark-200 p-4 rounded-xl flex flex-col items-center justify-center text-center animate-float animation-delay-1500">
                   <div className="w-12 h-12 bg-tech-cyan/20 rounded-full flex items-center justify-center mb-2">
-                    <span className="text-tech-cyan text-xl font-bold">BE</span>
+                    <span className="text-tech-cyan text-xl font-bold">OS</span>
                   </div>
-                  <p className="text-sm mt-2">Backend Dev</p>
+                  <p className="text-sm mt-2">Operating Syatems</p>
                 </div>
               </div>
             </div>
