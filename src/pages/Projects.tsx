@@ -45,7 +45,7 @@ const Projects = () => {
               {projects.filter(p => p.featured).map((project, index) => <div key={index} className="bg-dark-100 rounded-xl overflow-hidden shadow-lg">
                   <div className="grid md:grid-cols-2 gap-0">
                     <div className="h-64 md:h-auto overflow-hidden">
-                      <img src={project.image} alt={project.title} className="w-full h-full object-cover hover:scale-110 transition-transform duration-300" />
+                      <img src={project.image} alt={project.title} className="w-full h-full hover:scale-110 transition-transform duration-300 object-cover" />
                     </div>
                     <div className="p-6 flex flex-col">
                       <h3 className="text-xl font-bold mb-2">{project.title}</h3>
