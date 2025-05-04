@@ -42,13 +42,13 @@ const About = () => {
               <div className="bg-dark-100 rounded-xl p-6">
                 <h2 className="text-2xl font-semibold mb-4 text-tech-purple">Education</h2>
                 <div className="mb-4 border-l-2 border-tech-purple pl-4">
-                  <h3 className="text-lg font-medium">Bachelor of Technology in Computer Science & Engineering</h3>
-                  <p className="text-muted-foreground">Elite University • 2021 - Present</p>
+                  <h3 className="text-lg font-medium">Bachelor of Engineering in Computer Science & Engineering</h3>
+                  <p className="text-muted-foreground">Sathyabama Institute of Science and Technology • 2021 - 2025</p>
                   <p className="text-sm mt-2">Core subjects include Data Structures, Algorithms, Database Systems, Computer Networks, and Software Engineering.</p>
                 </div>
                 <div className="border-l-2 border-tech-blue pl-4">
                   <h3 className="text-lg font-medium">Higher Secondary Education</h3>
-                  <p className="text-muted-foreground">Premier Academy • 2019 - 2021</p>
+                  <p className="text-muted-foreground">Rockford School • 2019 - 2021</p>
                   <p className="text-sm mt-2">Mathematics, Physics, Chemistry, Computer Science with an excellent academic record.</p>
                 </div>
               </div>
