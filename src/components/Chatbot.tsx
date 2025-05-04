@@ -20,10 +20,11 @@ export function Chatbot() {
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [apiKey, setApiKey] = useState("");
-  const [apiKeySet, setApiKeySet] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { theme } = useTheme();
+  
+  // Pre-defined API key
+  const apiKey = "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";
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -34,16 +35,6 @@ export function Chatbot() {
       scrollToBottom();
     }
   }, [messages, isOpen]);
-
-  const handleApiKeySubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (apiKey.trim()) {
-      setApiKeySet(true);
-      toast.success("API key has been set!");
-    } else {
-      toast.error("Please enter a valid API key");
-    }
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -111,76 +102,53 @@ export function Chatbot() {
         </Button>
       </div>
       
-      {!apiKeySet ? (
-        <div className="p-4 flex-grow flex flex-col">
-          <p className="mb-4 text-sm text-muted-foreground">Please enter your OpenAI API key to continue:</p>
-          <form onSubmit={handleApiKeySubmit} className="space-y-3">
-            <Input 
-              type="password"
-              value={apiKey}
-              onChange={(e) => setApiKey(e.target.value)}
-              placeholder="Enter your OpenAI API key"
-              className="w-full"
-            />
-            <Button type="submit" className="w-full bg-tech-blue hover:bg-tech-blue/90">
-              Submit API Key
-            </Button>
-          </form>
-          <p className="mt-4 text-xs text-muted-foreground">
-            Your API key is stored locally in your browser and is not sent to our servers.
-          </p>
-        </div>
-      ) : (
-        <>
-          <div className="flex-grow p-3 overflow-y-auto max-h-[350px]">
-            <div className="space-y-4">
-              {messages.map((msg, i) => (
-                <div 
-                  key={i} 
-                  className={`flex ${
-                    msg.role === "user" ? "justify-end" : "justify-start"
-                  }`}
-                >
-                  <div 
-                    className={`max-w-[80%] px-3 py-2 rounded-lg ${
-                      msg.role === "user" 
-                        ? `${theme === "dark" ? "bg-tech-blue text-white" : "bg-tech-blue text-white"}`
-                        : `${theme === "dark" ? "bg-dark-200" : "bg-gray-100"}`
-                    }`}
-                  >
-                    <p className="text-sm whitespace-pre-wrap">{msg.content}</p>
-                  </div>
-                </div>
-              ))}
-              <div ref={messagesEndRef} />
-            </div>
-          </div>
-          <form onSubmit={handleSubmit} className={`p-3 border-t ${theme === "dark" ? "border-dark-200" : "border-gray-200"} flex gap-2`}>
-            <Textarea
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="Type a message..."
-              className={`min-h-[40px] max-h-[120px] resize-none ${theme === "dark" ? "bg-dark-200 border-dark-200" : ""}`}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' && !e.shiftKey) {
-                  e.preventDefault();
-                  handleSubmit(e);
-                }
-              }}
-            />
-            <Button 
-              type="submit" 
-              size="icon"
-              className={`bg-tech-purple hover:bg-tech-purple/90 text-white rounded-lg h-10 w-10 ${
-                isLoading || !input.trim() ? "opacity-50 cursor-not-allowed" : ""
+      <div className="flex-grow p-3 overflow-y-auto max-h-[350px]">
+        <div className="space-y-4">
+          {messages.map((msg, i) => (
+            <div 
+              key={i} 
+              className={`flex ${
+                msg.role === "user" ? "justify-end" : "justify-start"
               }`}
-              disabled={isLoading || !input.trim()}
             >
-              {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
-            </Button>
-          </form>
-        </>
-      )}
+              <div 
+                className={`max-w-[80%] px-3 py-2 rounded-lg ${
+                  msg.role === "user" 
+                    ? `${theme === "dark" ? "bg-tech-blue text-white" : "bg-tech-blue text-white"}`
+                    : `${theme === "dark" ? "bg-dark-200" : "bg-gray-100"}`
+                }`}
+              >
+                <p className="text-sm whitespace-pre-wrap">{msg.content}</p>
+              </div>
+            </div>
+          ))}
+          <div ref={messagesEndRef} />
+        </div>
+      </div>
+      <form onSubmit={handleSubmit} className={`p-3 border-t ${theme === "dark" ? "border-dark-200" : "border-gray-200"} flex gap-2`}>
+        <Textarea
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Type a message..."
+          className={`min-h-[40px] max-h-[120px] resize-none ${theme === "dark" ? "bg-dark-200 border-dark-200" : ""}`}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+              e.preventDefault();
+              handleSubmit(e);
+            }
+          }}
+        />
+        <Button 
+          type="submit" 
+          size="icon"
+          className={`bg-tech-purple hover:bg-tech-purple/90 text-white rounded-lg h-10 w-10 ${
+            isLoading || !input.trim() ? "opacity-50 cursor-not-allowed" : ""
+          }`}
+          disabled={isLoading || !input.trim()}
+        >
+          {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
+        </Button>
+      </form>
     </div>
   );
 }
