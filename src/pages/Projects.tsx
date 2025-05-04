@@ -5,27 +5,27 @@ import { Github, ExternalLink } from "lucide-react";
 
 const projects = [
   {
-    title: "AI Image Recognition",
-    description: "Developed a machine learning model that can identify objects in images with high accuracy using TensorFlow and Python.",
-    tech: ["Python", "TensorFlow", "OpenCV", "Flask"],
-    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=600&h=400&fit=crop",
+    title: "Chatbot in WhatsApp",
+    description: "Added a Chatbot in the WhatsApp Interface and made it function while users asks for any queries.",
+    tech: ["Python", "Flask", "AI"],
+    image: "https://unsplash.com/photos/a-green-whatsapp-icon-sitting-on-top-of-a-maze-tZgsbPtNnhQ",
     github: "https://github.com",
     demo: "https://demo.com",
     featured: true
   },
   {
-    title: "Student Management System",
-    description: "A comprehensive web application for educational institutions to manage students, courses, and academic records.",
-    tech: ["React", "Node.js", "Express", "MongoDB"],
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&h=400&fit=crop",
+    title: "IoT based Home Automation - Fire Security System",
+    description: "An IoT device which monitors real time sesnor data and acts accordingly when a fire is detected.",
+    tech: ["Microcontroller", "Sensors and Actuators", "C++", "Blynk"],
+    image: "https://unsplash.com/photos/a-close-up-of-a-metal-object-with-a-black-background-tETn6NTqNgk",
     github: "https://github.com",
     featured: true
   },
   {
-    title: "Personal Finance Tracker",
-    description: "An application that helps users track income, expenses, and financial goals with visualization dashboards.",
-    tech: ["Vue.js", "Firebase", "Chart.js"],
-    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&h=400&fit=crop",
+    title: "AgriPulse - IoT based Greenhouse Monitoring System",
+    description: "An IoT device which has an AI model which predicts the plant health and growth timespan using the real time sensor readings.",
+    tech: ["javascript", "AI", "C++"],
+    image: "https://unsplash.com/photos/macro-photography-of-black-circuit-board-FO7JIlwjOtU",
     github: "https://github.com",
     demo: "https://demo.com",
     featured: true
