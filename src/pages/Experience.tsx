@@ -140,15 +140,15 @@ const Experience = () => {
                 
                 <div className="space-y-4">
                   <div className="border-l-2 border-tech-cyan pl-4">
-                    <h3 className="font-medium">B.Tech in Computer Science & Engineering</h3>
-                    <p className="text-sm text-tech-blue">Elite University</p>
-                    <p className="text-xs text-muted-foreground">2021 - 2025 (Expected)</p>
+                    <h3 className="font-medium">B.E in Computer Science & Engineering</h3>
+                    <p className="text-sm text-tech-blue">Sathyanama Institute of Science and Technology</p>
+                    <p className="text-xs text-muted-foreground">2021 - 2025 </p>
                     <p className="text-xs mt-2">CGPA: 7.8/10.0</p>
                   </div>
                   
                   <div className="border-l-2 border-tech-cyan pl-4">
                     <h3 className="font-medium">Higher Secondary Education</h3>
-                    <p className="text-sm text-tech-blue">Premier Academy</p>
+                    <p className="text-sm text-tech-blue">Rockford School</p>
                     <p className="text-xs text-muted-foreground">2019 - 2021</p>
                     <p className="text-xs mt-2">Percentage: 74%</p>
                   </div>
