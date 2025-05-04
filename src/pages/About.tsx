@@ -51,6 +51,11 @@ const About = () => {
                   <p className="text-muted-foreground">Rockford School • 2019 - 2021</p>
                   <p className="text-sm mt-2">Mathematics, Physics, Chemistry, Computer Science with an excellent academic record.</p>
                 </div>
+                <div className="border-l-2 border-tech-blue pl-4">
+                  <h3 className="text-lg font-medium">Secondary Education/High School</h3>
+                  <p className="text-muted-foreground">The Titan School • 2006 - 2019</p>
+                  <p className="text-sm mt-2">Mathematics, Physics, Chemistry, Computer Science, Social Science, Tamil and English.</p>
+                </div>
               </div>
               
               <div className="bg-dark-100 rounded-xl p-6">
@@ -61,16 +66,16 @@ const About = () => {
                     <p className="text-sm text-muted-foreground">Building responsive and dynamic web applications using modern frameworks.</p>
                   </div>
                   <div className="bg-dark-200 p-4 rounded-lg">
-                    <h3 className="font-medium mb-2">AI & ML Research</h3>
-                    <p className="text-sm text-muted-foreground">Exploring machine learning algorithms and their practical applications.</p>
+                    <h3 className="font-medium mb-2">Embedded Systems</h3>
+                    <p className="text-sm text-muted-foreground">Using Embedded Systems to create new and innovative technologies.</p>
                   </div>
                   <div className="bg-dark-200 p-4 rounded-lg">
-                    <h3 className="font-medium mb-2">Database Design</h3>
-                    <p className="text-sm text-muted-foreground">Designing efficient database schemas and optimizing queries.</p>
+                    <h3 className="font-medium mb-2">UI/UX Design</h3>
+                    <p className="text-sm text-muted-foreground">Create new and proffesional UI/UX design ideas.</p>
                   </div>
                   <div className="bg-dark-200 p-4 rounded-lg">
                     <h3 className="font-medium mb-2">Problem Solving</h3>
-                    <p className="text-sm text-muted-foreground">Participating in coding challenges and algorithmic competitions.</p>
+                    <p className="text-sm text-muted-foreground">Participating in challenges and competitions.</p>
                   </div>
                 </div>
               </div>
