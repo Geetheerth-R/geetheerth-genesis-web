@@ -1,46 +1,38 @@
-
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Github, ExternalLink } from "lucide-react";
-
-const projects = [
-  {
-    title: "Chatbot in WhatsApp",
-    description: "Added a Chatbot in the WhatsApp Interface and made it function while users asks for any queries.",
-    tech: ["Python", "Flask", "AI"],
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80",
-    github: "https://github.com",
-    demo: "https://demo.com",
-    featured: true
-  },
-  {
-    title: "IoT based Home Automation - Fire Security System",
-    description: "An IoT device which monitors real time sesnor data and acts accordingly when a fire is detected.",
-    tech: ["Microcontroller", "Sensors and Actuators", "C++", "Blynk"],
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80",
-    github: "https://github.com",
-    featured: true
-  },
-  {
-    title: "AgriPulse - IoT based Greenhouse Monitoring System",
-    description: "An IoT device which has an AI model which predicts the plant health and growth timespan using the real time sensor readings.",
-    tech: ["javascript", "AI", "C++"],
-    image: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80",
-    github: "https://github.com",
-    demo: "https://demo.com",
-    featured: true
-  }
-];
-
+const projects = [{
+  title: "Chatbot in WhatsApp",
+  description: "Added a Chatbot in the WhatsApp Interface and made it function while users asks for any queries.",
+  tech: ["Python", "Flask", "AI"],
+  image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80",
+  github: "https://github.com",
+  demo: "https://demo.com",
+  featured: true
+}, {
+  title: "IoT based Home Automation - Fire Security System",
+  description: "An IoT device which monitors real time sesnor data and acts accordingly when a fire is detected.",
+  tech: ["Microcontroller", "Sensors and Actuators", "C++", "Blynk"],
+  image: "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80",
+  github: "https://github.com",
+  featured: true
+}, {
+  title: "AgriPulse - IoT based Greenhouse Monitoring System",
+  description: "An IoT device which has an AI model which predicts the plant health and growth timespan using the real time sensor readings.",
+  tech: ["javascript", "AI", "C++"],
+  image: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80",
+  github: "https://github.com",
+  demo: "https://demo.com",
+  featured: true
+}];
 const Projects = () => {
-  return (
-    <div className="min-h-screen flex flex-col">
+  return <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-grow pt-24 pb-16">
         <div className="container mx-auto">
           <div className="flex flex-col items-center text-center mb-12">
-            <h1 className="text-4xl font-bold mb-4 font-poppins">My Projects</h1>
+            <h1 className="font-bold mb-4 font-poppins text-3xl">My Projects</h1>
             <p className="text-muted-foreground max-w-2xl">
               Explore a selection of my academic and personal projects that showcase my technical skills and problem-solving abilities.
             </p>
@@ -50,15 +42,10 @@ const Projects = () => {
           <div className="mb-16">
             <h2 className="text-2xl font-semibold mb-8 text-tech-blue">Featured Projects</h2>
             <div className="grid gap-8">
-              {projects.filter(p => p.featured).map((project, index) => (
-                <div key={index} className="bg-dark-100 rounded-xl overflow-hidden shadow-lg">
+              {projects.filter(p => p.featured).map((project, index) => <div key={index} className="bg-dark-100 rounded-xl overflow-hidden shadow-lg">
                   <div className="grid md:grid-cols-2 gap-0">
                     <div className="h-64 md:h-auto overflow-hidden">
-                      <img 
-                        src={project.image} 
-                        alt={project.title}
-                        className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
-                      />
+                      <img src={project.image} alt={project.title} className="w-full h-full object-cover hover:scale-110 transition-transform duration-300" />
                     </div>
                     <div className="p-6 flex flex-col">
                       <h3 className="text-xl font-bold mb-2">{project.title}</h3>
@@ -66,14 +53,9 @@ const Projects = () => {
                       
                       <div className="mb-4">
                         <div className="flex flex-wrap gap-2">
-                          {project.tech.map((tech, techIndex) => (
-                            <span 
-                              key={techIndex}
-                              className="px-3 py-1 bg-dark-200 text-xs rounded-full"
-                            >
+                          {project.tech.map((tech, techIndex) => <span key={techIndex} className="px-3 py-1 bg-dark-200 text-xs rounded-full">
                               {tech}
-                            </span>
-                          ))}
+                            </span>)}
                         </div>
                       </div>
                       
@@ -84,19 +66,16 @@ const Projects = () => {
                             Code
                           </a>
                         </Button>
-                        {project.demo && (
-                          <Button asChild size="sm" className="rounded-lg">
+                        {project.demo && <Button asChild size="sm" className="rounded-lg">
                             <a href={project.demo} target="_blank" rel="noopener noreferrer">
                               <ExternalLink className="mr-2 h-4 w-4" />
                               Live Demo
                             </a>
-                          </Button>
-                        )}
+                          </Button>}
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
 
@@ -113,8 +92,6 @@ const Projects = () => {
         </div>
       </main>
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Projects;
