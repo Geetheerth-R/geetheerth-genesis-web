@@ -2,66 +2,52 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Briefcase, GraduationCap, Award } from "lucide-react";
-const experiences = [{
-  title: "Software Development Intern",
-  company: "TechCorp Solutions",
-  period: "May 2023 - August 2023",
-  description: "Assisted in developing and testing web applications using React and Node.js. Implemented responsive UI components and integrated RESTful APIs.",
-  type: "work",
-  skills: ["React", "Node.js", "Git", "Agile"]
-}, {
-  title: "Research Assistant",
-  company: "University AI Lab",
-  period: "January 2023 - Present",
-  description: "Contributing to research projects in machine learning and computer vision. Implementing algorithms and conducting experiments for data analysis.",
-  type: "research",
-  skills: ["Python", "TensorFlow", "Computer Vision", "Data Analysis"]
-}, {
-  title: "Web Development Project Lead",
-  company: "College Tech Club",
-  period: "September 2022 - Present",
-  description: "Leading a team of students in developing the college's technical festival website. Managing project timelines and coordinating team efforts.",
-  type: "volunteer",
-  skills: ["Leadership", "HTML/CSS", "JavaScript", "Project Management"]
-}, {
-  title: "Coding Mentor",
-  company: "Code Camp for Kids",
-  period: "June 2022 - August 2022",
-  description: "Taught programming fundamentals to high school students. Created lesson plans and programming exercises to enhance learning.",
-  type: "volunteer",
-  skills: ["Teaching", "Python", "Problem-solving", "Communication"]
-}];
-const certifications = [{
-  name: "Advanced Machine Learning",
-  issuer: "Stanford Online",
-  date: "March 2023",
-  credential: "ML-CERT-2023"
-}, {
-  name: "Full Stack Web Development",
-  issuer: "Udemy",
-  date: "December 2022",
-  credential: "FSW-2022-891"
-}, {
-  name: "Cloud Computing Fundamentals",
-  issuer: "AWS Training",
-  date: "October 2022",
-  credential: "AWS-CLF-2022"
-}, {
-  name: "Data Structures & Algorithms",
-  issuer: "Coursera",
-  date: "August 2022",
-  credential: "DSA-082022-45631"
-}];
-const achievements = [{
-  title: "First Place - Hackathon 2023",
-  description: "Led a team of 4 to victory in the university's annual hackathon by developing an innovative AI-powered solution for healthcare."
-}, {
-  title: "Dean's List Award",
-  description: "Recognized for outstanding academic performance in Computer Science for three consecutive semesters."
-}, {
-  title: "Best Technical Paper",
-  description: "Awarded for research paper on 'Optimizing Neural Networks for Edge Computing' at the Student Technical Symposium."
-}];
+
+const experiences = [
+  {
+    title: "SAP Intern",
+    company: "Titan Company.Ltd",
+    period: "September 2024 - October 2024",
+    description: "Learnt about the SAP working and the Supply chain management process.",
+    type: "work",
+    skills: ["ERP", "Supply Chain Management", "SAP"]
+  }
+];
+
+const certifications = [
+  {
+    name: "Machine Learning with MATLAB",
+    issuer: "MATLAB",
+    date: "January 2024",
+    completed : "100%"
+  },
+  {
+    name: "Digital 101 Journey",
+    issuer: "Nasscom",
+    date: "January 2024",
+    completed : "100%"
+  },
+  {
+    name: "Oracle Cloud Infrastructure",
+    issuer: "Oracle",
+    date: "March 2024",
+    completed : "100%"
+  },
+  {
+    name: "HTML, CSS, & JavaScript",
+    issuer: "Udemy",
+    date: "July 2024",
+    completed : "100%"
+  }
+];
+
+const achievements = [
+  {
+    title: "Best Project of the year - Wind Tunnel",
+    description: "Won the best project of he year award for the wind tunnel project which was the illustartion of the aerodynamics checking unit of airecrafts."
+  }
+];
+
 const Experience = () => {
   return <div className="min-h-screen flex flex-col">
       <Header />
@@ -124,7 +110,7 @@ const Experience = () => {
                       <p className="text-sm text-muted-foreground">{cert.issuer}</p>
                       <div className="flex justify-between text-xs text-muted-foreground mt-1">
                         <span>{cert.date}</span>
-                        <span>ID: {cert.credential}</span>
+                        <span>ID: {cert.completed}</span>
                       </div>
                     </div>)}
                 </div>
