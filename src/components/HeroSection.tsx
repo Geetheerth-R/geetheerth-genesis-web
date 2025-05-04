@@ -16,7 +16,7 @@ export function HeroSection() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 container py-0 my-[38px]">
         <div className="flex flex-col justify-center">
           <div className={`transition-all duration-1000 delay-300 transform ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
-            <p className="text-tech-cyan mb-1 font-medium mx-0 my-[17px]">
+            <p className="text-tech-cyan mb-1 font-medium mx-0 my-0">
               Hello, I am
             </p>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold font-poppins mb-4 py-px">
