@@ -1,4 +1,5 @@
-import { Github, Linkedin, Mail, Twitter } from "lucide-react";
+
+import { Github, Linkedin, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 export function Footer() {
   return <footer className="bg-dark-200 py-[25px] my-0">
@@ -20,17 +21,14 @@ export function Footer() {
 
           <div className="flex flex-col items-center md:items-end">
             <div className="flex space-x-4 mb-4">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-dark-100 flex items-center justify-center hover:bg-dark-300 transition-colors">
+              <a href="https://github.dev/Geetheerth-R" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-dark-100 flex items-center justify-center hover:bg-dark-300 transition-colors">
                 <Github size={20} />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-dark-100 flex items-center justify-center hover:bg-dark-300 transition-colors">
+              <a href="https://linkedin.com/in/geetheerth-r-d" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-dark-100 flex items-center justify-center hover:bg-dark-300 transition-colors">
                 <Linkedin size={20} />
               </a>
-              <a href="mailto:contact@example.com" className="w-10 h-10 rounded-full bg-dark-100 flex items-center justify-center hover:bg-dark-300 transition-colors">
+              <a href="mailto:geetheerth@gmail.com" className="w-10 h-10 rounded-full bg-dark-100 flex items-center justify-center hover:bg-dark-300 transition-colors">
                 <Mail size={20} />
-              </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-dark-100 flex items-center justify-center hover:bg-dark-300 transition-colors">
-                <Twitter size={20} />
               </a>
             </div>
             <p className="text-sm text-muted-foreground">

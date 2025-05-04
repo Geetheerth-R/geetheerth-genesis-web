@@ -1,15 +1,16 @@
+
 import { useState } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+
 const Contact = () => {
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -17,35 +18,53 @@ const Contact = () => {
     message: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const {
-      name,
-      value
-    } = e.target;
+    const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
   };
-  const handleSubmit = (e: React.FormEvent) => {
+  
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      // Call the Supabase edge function
+      const { error } = await supabase.functions.invoke("send-contact-email", {
+        body: formData
+      });
+
+      if (error) {
+        throw new Error(error.message);
+      }
+
       toast({
         title: "Message sent!",
         description: "Thank you for your message. I'll get back to you soon."
       });
+      
+      // Reset form
       setFormData({
         name: "",
         email: "",
         subject: "",
         message: ""
       });
+    } catch (error) {
+      console.error("Error sending form:", error);
+      toast({
+        title: "Error",
+        description: "Failed to send your message. Please try again later.",
+        variant: "destructive"
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1500);
+    }
   };
+  
   return <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-grow pt-24 pb-16">
@@ -105,7 +124,7 @@ const Contact = () => {
               </div>
               
               <div className="mt-8 bg-dark-100 rounded-xl p-6 shadow-lg">
-                <h2 className="text-xl font-semibold mb-4 text-tech-purple"> Working Hours</h2>
+                <h2 className="text-xl font-semibold mb-4 text-tech-purple"> Working Hours</h2>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
                     <span>Monday - Friday</span>
