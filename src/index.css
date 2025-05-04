@@ -67,6 +67,8 @@
 @layer components {
   .hero-gradient {
     @apply bg-gradient-to-r from-tech-purple via-tech-blue to-tech-red bg-clip-text text-transparent;
+    background-size: 300% 100%;
+    animation: text-shimmer 6s infinite linear; /* Slowed down from 3s to 6s */
   }
   
   .tech-gradient {
@@ -79,7 +81,7 @@
   
   .glass-card {
     @apply dark:bg-dark-100/60 dark:backdrop-blur-md dark:border-white/10 dark:shadow-xl 
-           light:bg-white/80 light:backdrop-blur-md light:border-gray-200 light:shadow-lg;
+           bg-white/80 backdrop-blur-md border-gray-200 shadow-lg;
   }
 }
 
@@ -91,5 +93,17 @@
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+}
+
+@keyframes text-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }

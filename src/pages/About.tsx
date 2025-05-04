@@ -1,8 +1,11 @@
+
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
+
 const About = () => {
-  return <div className="min-h-screen flex flex-col">
+  return (
+    <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-grow pt-24 pb-16">
         <div className="container mx-auto">
@@ -10,7 +13,7 @@ const About = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="md:col-span-1">
-              <div className="bg-dark-100 rounded-xl p-6 sticky top-24">
+              <div className="bg-card rounded-xl p-6 sticky top-24 shadow-md">
                 <div className="aspect-square rounded-xl bg-gradient-to-br from-tech-blue to-tech-purple mb-4 overflow-hidden">
                   <img alt="Geetheerth R" src="/lovable-uploads/9ec516fd-ca37-4107-8caf-b784f177ab6e.jpg" className="w-full h-full object-cover" />
                 </div>
@@ -29,7 +32,7 @@ const About = () => {
             </div>
             
             <div className="md:col-span-2 space-y-8">
-              <div className="bg-dark-100 rounded-xl p-6">
+              <div className="bg-card rounded-xl p-6 shadow-md">
                 <h2 className="text-2xl font-semibold mb-4 text-tech-blue">My Journey</h2>
                 <p className="mb-4">
                   I am a passionate Computer Science & Engineering student with a keen interest in exploring the intersection of technology and innovation. My journey in the world of computing began with a fascination for how software can solve real-world problems and transform lives.
@@ -39,7 +42,7 @@ const About = () => {
                 </p>
               </div>
               
-              <div className="bg-dark-100 rounded-xl p-6">
+              <div className="bg-card rounded-xl p-6 shadow-md">
                 <h2 className="text-2xl font-semibold mb-4 text-tech-purple">Education</h2>
                 <div className="mb-4 border-l-2 border-tech-purple pl-4">
                   <h3 className="text-lg font-medium">Bachelor of Engineering in Computer Science & Engineering</h3>
@@ -58,29 +61,29 @@ const About = () => {
                 </div>
               </div>
               
-              <div className="bg-dark-100 rounded-xl p-6">
+              <div className="bg-card rounded-xl p-6 shadow-md">
                 <h2 className="text-2xl font-semibold mb-4 text-tech-red">What I Do</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="bg-dark-200 p-4 rounded-lg">
+                  <div className="bg-secondary p-4 rounded-lg">
                     <h3 className="font-medium mb-2">Web Development</h3>
                     <p className="text-sm text-muted-foreground">Building responsive and dynamic web applications using modern frameworks.</p>
                   </div>
-                  <div className="bg-dark-200 p-4 rounded-lg">
+                  <div className="bg-secondary p-4 rounded-lg">
                     <h3 className="font-medium mb-2">Embedded Systems</h3>
                     <p className="text-sm text-muted-foreground">Using Embedded Systems to create new and innovative technologies.</p>
                   </div>
-                  <div className="bg-dark-200 p-4 rounded-lg">
+                  <div className="bg-secondary p-4 rounded-lg">
                     <h3 className="font-medium mb-2">UI/UX Design</h3>
                     <p className="text-sm text-muted-foreground">Create new and proffesional UI/UX design ideas.</p>
                   </div>
-                  <div className="bg-dark-200 p-4 rounded-lg">
+                  <div className="bg-secondary p-4 rounded-lg">
                     <h3 className="font-medium mb-2">Problem Solving</h3>
                     <p className="text-sm text-muted-foreground">Participating in challenges and competitions.</p>
                   </div>
                 </div>
               </div>
               
-              <div className="bg-dark-100 rounded-xl p-6">
+              <div className="bg-card rounded-xl p-6 shadow-md">
                 <h2 className="text-2xl font-semibold mb-4 text-tech-cyan">Personal Interests</h2>
                 <p>
                   Beyond academics, I enjoy exploring open-source projects, participating in hackathons, and contributing to the tech community. I'm also interested in digital art, playing chess, and staying updated with the latest advancements in technology and computing.
@@ -91,6 +94,8 @@ const About = () => {
         </div>
       </main>
       <Footer />
-    </div>;
+    </div>
+  );
 };
+
 export default About;
