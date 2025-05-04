@@ -68,7 +68,7 @@
   .hero-gradient {
     @apply bg-gradient-to-r from-tech-purple via-tech-blue to-tech-red bg-clip-text text-transparent;
     background-size: 300% 100%;
-    animation: text-shimmer 6s infinite linear; /* Slowed down from 3s to 6s */
+    animation: text-shimmer 10s infinite linear; /* Slowed down from 6s to 10s */
   }
   
   .tech-gradient {

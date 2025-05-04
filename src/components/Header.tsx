@@ -3,9 +3,10 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 import { Button } from "@/components/ui/button";
-import { Menu, FileImage, Download } from "lucide-react";
+import { Menu, FileImage, Download, MessageSquare } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useTheme } from "./ThemeProvider";
+import { useChatToggle } from "@/context/ChatContext";
 
 const navItems = [
   {
@@ -38,6 +39,7 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [activePath, setActivePath] = useState("/");
   const { theme } = useTheme();
+  const { toggleChat } = useChatToggle();
   
   useEffect(() => {
     const handleScroll = () => {
@@ -82,13 +84,14 @@ export function Header() {
             <Link 
               key={item.path} 
               to={item.path} 
-              className={`px-3 py-2 rounded-lg transition-colors ${
+              className={`px-3 py-2 rounded-lg transition-all duration-300 ${
                 activePath === item.path 
                   ? "text-primary font-medium" 
-                  : `hover:text-primary ${theme === "light" ? "text-gray-700" : ""}`
+                  : `hover:text-primary relative group ${theme === "light" ? "text-gray-700" : ""}`
               }`}
             >
               {item.name}
+              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-tech-blue to-tech-purple transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
             </Link>
           ))}
           <div className="ml-2">
@@ -96,22 +99,42 @@ export function Header() {
           </div>
           <Button 
             asChild 
-            className={`ml-4 rounded-lg ${
+            className={`ml-4 rounded-lg relative overflow-hidden transition-all duration-300 shadow-lg hover:shadow-xl ${
               theme === "dark" 
-                ? "bg-tech-blue hover:bg-tech-blue/90" 
-                : "bg-tech-blue hover:bg-blue-600"
+                ? "bg-tech-blue hover:bg-tech-blue/90 before:absolute before:inset-0 before:bg-gradient-to-r before:from-tech-purple/20 before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity" 
+                : "bg-tech-blue hover:bg-blue-600 before:absolute before:inset-0 before:bg-gradient-to-r before:from-tech-purple/20 before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity"
             }`}
           >
-            <a href="/lovable-uploads/f6a5e962-f7a3-4685-9f92-5df2980928cd.png" download="Geetheerth_R_Resume.png" className="flex items-center gap-2">
+            <a href="/lovable-uploads/f6a5e962-f7a3-4685-9f92-5df2980928cd.png" download="Geetheerth_R_Resume.png" className="flex items-center gap-2 z-10 relative">
               <Download size={16} />
               Resume
             </a>
+          </Button>
+          <Button 
+            onClick={toggleChat} 
+            className={`ml-3 rounded-lg p-2 transition-all duration-300 ${
+              theme === "dark"
+                ? "bg-tech-purple hover:bg-tech-purple/90 text-white" 
+                : "bg-tech-purple hover:bg-tech-purple/90 text-white"
+            }`}
+            size="icon"
+          >
+            <MessageSquare size={18} />
+            <span className="sr-only">Open Chat</span>
           </Button>
         </nav>
 
         {/* Mobile Navigation */}
         <div className="flex items-center gap-2 md:hidden">
           <ThemeSwitcher />
+          <Button
+            onClick={toggleChat}
+            className="mr-2 rounded-lg p-2 bg-tech-purple hover:bg-tech-purple/90 text-white"
+            size="icon"
+          >
+            <MessageSquare size={18} />
+            <span className="sr-only">Open Chat</span>
+          </Button>
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="outline" size="icon" className="rounded-lg">
@@ -125,10 +148,10 @@ export function Header() {
                   <Link 
                     key={item.path} 
                     to={item.path} 
-                    className={`px-3 py-2 rounded-lg transition-colors ${
+                    className={`px-3 py-2 rounded-lg transition-all duration-300 ${
                       activePath === item.path 
                         ? "bg-secondary text-primary font-medium" 
-                        : "hover:text-primary"
+                        : "hover:text-primary hover:bg-secondary/50"
                     }`}
                   >
                     {item.name}
