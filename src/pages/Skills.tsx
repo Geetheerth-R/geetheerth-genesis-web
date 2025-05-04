@@ -92,10 +92,10 @@ const Skills = () => {
             
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
               {[
-                "React", "TypeScript", "Python", "Java", "C++",
-                "Node.js", "Express", "MongoDB", "MySQL", "PostgreSQL",
-                "Git", "Docker", "AWS", "TensorFlow", "PyTorch",
-                "REST API", "GraphQL", "Linux", "Agile", "CI/CD"
+                "IoT", "JavaScript", "Python", "Java", "C++",
+                "Node.js", "AI", "Flask", "MySQL", "Node-RedL",
+                "MQTT", "Windows", "UI/UX", "Chatbot", "Database",
+                "SAP", "CAD", "Linux", "Sensors", "Actuators"
               ].map((tech, i) => (
                 <div 
                   key={i} 
