@@ -1,3 +1,4 @@
+
 import { ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
@@ -34,7 +35,7 @@ export function HeroSection() {
             </p>
             <div className="flex flex-wrap gap-4">
               <Button asChild className="rounded-xl px-6 py-6 bg-gradient-to-r from-tech-blue to-tech-purple hover:opacity-90 transition-all" size="lg">
-                <a href="#contact">Get in Touch</a>
+                <a href="/contact#contact-form">Get in Touch</a>
               </Button>
               <Button asChild variant="outline" className="rounded-xl px-6 py-6 border-tech-blue text-tech-blue hover:bg-tech-blue/10" size="lg">
                 <a href="/projects">View Work</a>

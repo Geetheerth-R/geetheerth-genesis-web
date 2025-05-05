@@ -144,7 +144,7 @@ const Contact = () => {
             
             {/* Contact Form */}
             <div className="lg:col-span-2">
-              <div className="bg-dark-100 rounded-xl p-6 shadow-lg">
+              <div id="contact-form" className="bg-dark-100 rounded-xl p-6 shadow-lg">
                 <h2 className="text-xl font-semibold mb-6">Send Me a Message</h2>
                 
                 <form onSubmit={handleSubmit} className="space-y-6">
