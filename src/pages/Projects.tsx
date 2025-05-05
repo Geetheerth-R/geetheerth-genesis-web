@@ -10,7 +10,7 @@ const projects = [{
   title: "Chatbot in WhatsApp",
   description: "Added a Chatbot in the WhatsApp Interface and made it function while users asks for any queries.",
   tech: ["Python", "Flask", "AI"],
-  image: "/lovable-uploads/chatbot-whatsapp.jpg", 
+  image: "/lovable-uploads/chatbot.jpg", 
   github: "https://github.com",
   demo: "https://demo.com",
   featured: true
@@ -18,7 +18,7 @@ const projects = [{
   title: "IoT based Home Automation - Fire Security System",
   description: "An IoT device which monitors real time sesnor data and acts accordingly when a fire is detected.",
   tech: ["Microcontroller", "Sensors and Actuators", "C++", "Blynk"],
-  image: "/lovable-uploads/fire-security.jpg", 
+  image: "/lovable-uploads/fire.jpg", 
   github: "https://github.com",
   featured: true
 }, {
