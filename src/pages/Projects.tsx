@@ -10,7 +10,7 @@ const projects = [{
   title: "Chatbot in WhatsApp",
   description: "Added a Chatbot in the WhatsApp Interface and made it function while users asks for any queries.",
   tech: ["Python", "Flask", "AI"],
-  image: "/lovable-uploads/9ec516fd-ca37-4107-8caf-b784f177ab6e.jpg", 
+  image: "/lovable-uploads/chatbot-whatsapp.jpg", 
   github: "https://github.com",
   demo: "https://demo.com",
   featured: true
@@ -18,14 +18,14 @@ const projects = [{
   title: "IoT based Home Automation - Fire Security System",
   description: "An IoT device which monitors real time sesnor data and acts accordingly when a fire is detected.",
   tech: ["Microcontroller", "Sensors and Actuators", "C++", "Blynk"],
-  image: "/lovable-uploads/f6a5e962-f7a3-4685-9f92-5df2980928cd.png", 
+  image: "/lovable-uploads/fire-security.jpg", 
   github: "https://github.com",
   featured: true
 }, {
   title: "AgriPulse - IoT based Greenhouse Monitoring System",
   description: "An IoT device which has an AI model which predicts the plant health and growth timespan using the real time sensor readings.",
   tech: ["javascript", "AI", "C++"],
-  image: "/lovable-uploads/9ec516fd-ca37-4107-8caf-b784f177ab6e.jpg",
+  image: "/lovable-uploads/ee3580d7-5395-4bba-8660-f7aeddc6f247.png",
   github: "https://github.com",
   demo: "https://demo.com",
   featured: true
@@ -53,7 +53,12 @@ const Projects = () => {
                   <div key={index} className="bg-dark-100 rounded-xl overflow-hidden shadow-lg">
                     <div className="grid md:grid-cols-2 gap-0">
                       <div className="h-64 md:h-auto overflow-hidden">
-                        <img src={project.image} alt={project.title} className="w-full h-full hover:scale-110 transition-transform duration-300 object-cover" />
+                        <img 
+                          src={project.image} 
+                          alt={project.title} 
+                          className="w-full h-full hover:scale-110 transition-transform duration-300 object-cover" 
+                          style={{ aspectRatio: '16/10', objectFit: 'cover' }}
+                        />
                       </div>
                       <div className="p-6 flex flex-col">
                         <h3 className="text-xl font-bold mb-2">{project.title}</h3>
