@@ -1,7 +1,6 @@
 
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Send, X, Loader2 } from "lucide-react";
 import { useChatToggle } from "@/context/ChatContext";
@@ -13,6 +12,170 @@ interface Message {
   content: string;
 }
 
+// Knowledge base with information about Geetheerth
+const knowledgeBase = {
+  // Personal information
+  personal: {
+    name: "Geetheerth R",
+    location: "Chennai, India",
+    email: "geetheerth@gmail.com",
+    github: "github.com/geetheerth",
+    education: {
+      bachelors: {
+        degree: "Bachelor of Engineering in Computer Science & Engineering",
+        institution: "Sathyabama Institute of Science and Technology",
+        period: "2021 - 2025",
+        details: "Core subjects include Data Structures, Algorithms, Database Systems, Computer Networks, and Software Engineering."
+      },
+      highSchool: {
+        institution: "Rockford School",
+        period: "2019 - 2021",
+        details: "Mathematics, Physics, Chemistry, Computer Science with an excellent academic record."
+      },
+      school: {
+        institution: "The Titan School",
+        period: "2006 - 2019",
+        details: "Mathematics, Physics, Chemistry, Computer Science, Social Science, Tamil and English."
+      }
+    }
+  },
+  
+  // Skills information
+  skills: {
+    programming: ["Python", "JavaScript", "Java", "C/C++", "HTML/CSS"],
+    iot: ["Arduino", "Raspberry Pi", "ESP8266/32", "Sensors", "Actuators"],
+    tools: ["Node-Red", "MQTT", "KiCAD", "VS Code", "MySQL"],
+    softSkills: ["Problem Solving", "Team Collaboration", "Communication", "Project Management", "Time Management"],
+    learningAreas: ["Cloud Computing", "Deep Learning", "Artificial Intelligence", "Blockchain"]
+  },
+  
+  // Projects information
+  projects: [
+    {
+      title: "Chatbot in WhatsApp",
+      description: "Added a Chatbot in the WhatsApp Interface and made it function while users asks for any queries.",
+      technologies: ["Python", "Flask", "AI"]
+    },
+    {
+      title: "IoT based Home Automation - Fire Security System",
+      description: "An IoT device which monitors real time sensor data and acts accordingly when a fire is detected.",
+      technologies: ["Microcontroller", "Sensors and Actuators", "C++", "Blynk"]
+    },
+    {
+      title: "AgriPulse - IoT based Greenhouse Monitoring System",
+      description: "An IoT device which has an AI model which predicts the plant health and growth timespan using the real time sensor readings.",
+      technologies: ["JavaScript", "AI", "C++"]
+    }
+  ],
+  
+  // Areas of expertise
+  expertise: ["Web Development", "Embedded Systems", "UI/UX Design", "Problem Solving"],
+  
+  // Interests
+  interests: ["Open-source projects", "Hackathons", "Digital art", "Chess", "Technology advancements"]
+};
+
+// Function to generate responses based on user queries
+const generateResponse = (query: string): string => {
+  const lowerQuery = query.toLowerCase();
+  
+  // Check for greetings
+  if (/^(hi|hello|hey|greetings)/i.test(lowerQuery)) {
+    return "Hello! I'm Geetheerth's portfolio assistant. How can I help you today?";
+  }
+  
+  // Check for questions about name or introduction
+  if (lowerQuery.includes("who are you") || lowerQuery.includes("introduce yourself") || lowerQuery.includes("about you") || lowerQuery.includes("who is geetheerth")) {
+    return `Geetheerth R is a Computer Science & Engineering student from Chennai, India. He's passionate about technology and innovation, particularly in areas like web development, embedded systems, and AI.`;
+  }
+  
+  // Check for questions about education
+  if (lowerQuery.includes("education") || lowerQuery.includes("study") || lowerQuery.includes("college") || lowerQuery.includes("university") || lowerQuery.includes("school")) {
+    return `Geetheerth's educational background includes:
+
+1. Bachelor of Engineering in Computer Science & Engineering from Sathyabama Institute of Science and Technology (2021-2025)
+2. Higher Secondary Education from Rockford School (2019-2021)
+3. Secondary Education from The Titan School (2006-2019)
+
+His coursework includes Data Structures, Algorithms, Database Systems, Computer Networks, and Software Engineering.`;
+  }
+  
+  // Check for questions about skills
+  if (lowerQuery.includes("skill") || lowerQuery.includes("know") || lowerQuery.includes("good at") || lowerQuery.includes("capable")) {
+    let response = `Geetheerth has skills in multiple areas:\n\n`;
+    
+    response += `Programming Languages: ${knowledgeBase.skills.programming.join(", ")}\n`;
+    response += `IoT & Embedded: ${knowledgeBase.skills.iot.join(", ")}\n`;
+    response += `Tools & Technologies: ${knowledgeBase.skills.tools.join(", ")}\n`;
+    response += `Soft Skills: ${knowledgeBase.skills.softSkills.join(", ")}\n\n`;
+    
+    response += `He's currently expanding his knowledge in ${knowledgeBase.skills.learningAreas.join(", ")}.`;
+    return response;
+  }
+  
+  // Check for questions about projects
+  if (lowerQuery.includes("project") || lowerQuery.includes("work") || lowerQuery.includes("portfolio") || lowerQuery.includes("built") || lowerQuery.includes("created")) {
+    let response = `Geetheerth has worked on several notable projects:\n\n`;
+    
+    knowledgeBase.projects.forEach((project, index) => {
+      response += `${index + 1}. ${project.title}: ${project.description}\n`;
+      response += `   Technologies used: ${project.technologies.join(", ")}\n\n`;
+    });
+    
+    return response;
+  }
+  
+  // Check for questions about contact information
+  if (lowerQuery.includes("contact") || lowerQuery.includes("email") || lowerQuery.includes("reach") || lowerQuery.includes("github")) {
+    return `You can contact Geetheerth at:
+- Email: ${knowledgeBase.personal.email}
+- GitHub: ${knowledgeBase.personal.github}
+- Location: ${knowledgeBase.personal.location}
+
+You can also use the contact form on this website to send him a message directly.`;
+  }
+  
+  // Check for questions about what he does
+  if (lowerQuery.includes("what do you do") || lowerQuery.includes("what does he do") || lowerQuery.includes("expertise") || lowerQuery.includes("specialization")) {
+    return `Geetheerth specializes in:
+1. Web Development - Building responsive and dynamic web applications
+2. Embedded Systems - Creating innovative technologies with embedded systems
+3. UI/UX Design - Designing professional user interfaces and experiences
+4. Problem Solving - Finding innovative solutions to technical challenges`;
+  }
+  
+  // Check for questions about interests
+  if (lowerQuery.includes("interest") || lowerQuery.includes("hobby") || lowerQuery.includes("passion") || lowerQuery.includes("free time")) {
+    return `Beyond academics and professional work, Geetheerth is interested in:
+- Exploring open-source projects
+- Participating in hackathons
+- Digital art
+- Playing chess
+- Keeping up with the latest technology advancements`;
+  }
+  
+  // Check for AgriPulse project
+  if (lowerQuery.includes("agripulse") || (lowerQuery.includes("greenhouse") && lowerQuery.includes("monitoring"))) {
+    const project = knowledgeBase.projects.find(p => p.title.includes("AgriPulse"));
+    return `AgriPulse is an IoT-based Greenhouse Monitoring System that Geetheerth developed. This project uses real-time sensor readings to feed an AI model that predicts plant health and growth timespan. The technologies used include JavaScript, AI, and C++.`;
+  }
+  
+  // Check for Fire Security project
+  if (lowerQuery.includes("fire") || lowerQuery.includes("security") || lowerQuery.includes("home automation")) {
+    const project = knowledgeBase.projects.find(p => p.title.includes("Fire"));
+    return `The IoT-based Home Automation - Fire Security System is a project that monitors real-time sensor data and takes appropriate actions when a fire is detected. This system was built using microcontrollers, various sensors and actuators, C++ for programming, and the Blynk platform for remote monitoring and control.`;
+  }
+  
+  // Check for Chatbot project
+  if (lowerQuery.includes("chatbot") && lowerQuery.includes("whatsapp")) {
+    const project = knowledgeBase.projects.find(p => p.title.includes("Chatbot"));
+    return `Geetheerth developed a Chatbot for WhatsApp that can respond to user queries. This project was implemented using Python for the backend logic, Flask for the web server framework, and AI techniques for understanding and generating appropriate responses to user messages.`;
+  }
+  
+  // Default response if no specific pattern is matched
+  return "I'm Geetheerth's portfolio assistant. I can tell you about his education, skills, projects, and more. How can I help you learn more about him?";
+};
+
 export function Chatbot() {
   const { isOpen, closeChat } = useChatToggle();
   const [messages, setMessages] = useState<Message[]>([
@@ -22,9 +185,6 @@ export function Chatbot() {
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { theme } = useTheme();
-  
-  // Pre-defined API key
-  const apiKey = "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";
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -46,46 +206,25 @@ export function Chatbot() {
     setIsLoading(true);
 
     try {
-      const response = await fetch("https://api.openai.com/v1/chat/completions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${apiKey}`
-        },
-        body: JSON.stringify({
-          model: "gpt-4o",
-          messages: [
-            {
-              role: "system",
-              content: "You are an assistant for Geetheerth R's portfolio website. Provide concise, informative responses about Geetheerth's skills, projects, experience, and background. Keep responses short and relevant."
-            },
-            ...messages,
-            userMessage
-          ],
-          max_tokens: 400,
-          temperature: 0.7
-        })
-      });
-
-      const data = await response.json();
+      // Simulate network delay for a more natural feeling
+      await new Promise(resolve => setTimeout(resolve, 500));
       
-      if (data.error) {
-        throw new Error(data.error.message || "Something went wrong with the API request");
-      }
+      // Generate response using our custom function
+      const responseText = generateResponse(input);
       
       const assistantMessage = { 
         role: "assistant", 
-        content: data.choices[0].message.content 
+        content: responseText 
       } as Message;
       
       setMessages(prev => [...prev, assistantMessage]);
     } catch (error) {
-      console.error("Error calling OpenAI API:", error);
+      console.error("Error generating response:", error);
       setMessages(prev => [
         ...prev, 
-        { role: "assistant", content: "Sorry, there was an error processing your request. Please try again later." }
+        { role: "assistant", content: "Sorry, I'm having trouble processing your request. Please try again." }
       ]);
-      toast.error("Failed to get response from AI");
+      toast.error("Failed to generate response");
     } finally {
       setIsLoading(false);
     }
