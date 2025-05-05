@@ -2,59 +2,46 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Briefcase, GraduationCap, Award } from "lucide-react";
-
-const experiences = [
-  {
-    title: "SAP Intern",
-    company: "Titan Company.Ltd",
-    period: "September 2024 - October 2024",
-    description: "Learnt about the SAP working and the Supply chain management process.",
-    type: "work",
-    skills: ["ERP", "Supply Chain Management", "SAP"]
-  }
-];
-
-const certifications = [
-  {
-    name: "Machine Learning with MATLAB",
-    issuer: "MATLAB",
-    date: "January 2024",
-    completed : "100%"
-  },
-  {
-    name: "Digital 101 Journey",
-    issuer: "Nasscom",
-    date: "January 2024",
-    completed : "100%"
-  },
-  {
-    name: "Oracle Cloud Infrastructure",
-    issuer: "Oracle",
-    date: "March 2024",
-    completed : "100%"
-  },
-  {
-    name: "HTML, CSS, & JavaScript",
-    issuer: "Udemy",
-    date: "July 2024",
-    completed : "100%"
-  }
-];
-
-const achievements = [
-  {
-    title: "Best Project of the year - Wind Tunnel",
-    description: "Won the best project of he year award for the wind tunnel project which was the illustartion of the aerodynamics checking unit of airecrafts."
-  }
-];
-
+const experiences = [{
+  title: "SAP Intern",
+  company: "Titan Company.Ltd",
+  period: "September 2024 - October 2024",
+  description: "Learnt about the SAP working and the Supply chain management process.",
+  type: "work",
+  skills: ["ERP", "Supply Chain Management", "SAP"]
+}];
+const certifications = [{
+  name: "Machine Learning with MATLAB",
+  issuer: "MATLAB",
+  date: "January 2024",
+  completed: "100%"
+}, {
+  name: "Digital 101 Journey",
+  issuer: "Nasscom",
+  date: "January 2024",
+  completed: "100%"
+}, {
+  name: "Oracle Cloud Infrastructure",
+  issuer: "Oracle",
+  date: "March 2024",
+  completed: "100%"
+}, {
+  name: "HTML, CSS, & JavaScript",
+  issuer: "Udemy",
+  date: "July 2024",
+  completed: "100%"
+}];
+const achievements = [{
+  title: "Best Project of the year - Wind Tunnel",
+  description: "Won the best project of he year award for the wind tunnel project which was the illustartion of the aerodynamics checking unit of airecrafts."
+}];
 const Experience = () => {
   return <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-grow pt-24 pb-16">
         <div className="container mx-auto">
           <div className="flex flex-col items-center text-center mb-12">
-            <h1 className="text-4xl font-bold mb-4 font-poppins">Experience & Achievements</h1>
+            <h1 className="font-bold mb-4 font-poppins text-3xl">Experience & Achievements</h1>
             <p className="text-muted-foreground max-w-2xl">
               My professional journey, academic accomplishments, and skills developed through various roles and projects.
             </p>
