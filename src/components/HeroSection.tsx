@@ -27,17 +27,19 @@ export function HeroSection() {
                 Geetheerth R
               </span>
             </h1>
-            <p className="font-medium text-muted-foreground mb-6 py-px md:text-xl text-sm flex items-center">
-              Computer Science & Engineering{" "}
-              <span className="inline-flex items-center h-[24px] ml-1">
-                <GooeyText 
-                  texts={["Student", "Graduate"]} 
-                  morphTime={1.5} 
-                  cooldownTime={2}
-                  textClassName="text-sm md:text-xl font-medium text-primary" 
-                />
-              </span>
-            </p>
+            <div className="mb-6 py-px">
+              <p className="font-medium text-muted-foreground md:text-xl text-sm inline-flex items-center">
+                Computer Science & Engineering{" "}
+                <span className="ml-1">
+                  <GooeyText 
+                    texts={["Graduate", "Student"]} 
+                    morphTime={1.5} 
+                    cooldownTime={2}
+                    textClassName="text-sm md:text-xl font-medium text-primary" 
+                  />
+                </span>
+              </p>
+            </div>
             <p className="text-muted-foreground max-w-lg mb-8 text-base">
               Exploring the frontiers of technology through innovative solutions,
               creative problem-solving, and continuous learning.
@@ -80,7 +82,7 @@ export function HeroSection() {
                   <div className="w-12 h-12 bg-tech-cyan/20 rounded-full flex items-center justify-center mb-2">
                     <span className="text-tech-cyan text-xl font-bold">OS</span>
                   </div>
-                  <p className="text-sm mt-2">Operating Syatems</p>
+                  <p className="text-sm mt-2">Operating Systems</p>
                 </div>
               </div>
             </div>

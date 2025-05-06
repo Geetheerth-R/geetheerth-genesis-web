@@ -87,13 +87,19 @@ export function GooeyText({
 
     animate();
 
+    // Initialize the text
+    if (text1Ref.current && text2Ref.current) {
+      text1Ref.current.textContent = texts[0];
+      text2Ref.current.textContent = texts[1];
+    }
+
     return () => {
       // Cleanup function if needed
     };
   }, [texts, morphTime, cooldownTime]);
 
   return (
-    <div className={cn("relative", className)}>
+    <div className={cn("relative inline-block min-w-[80px]", className)}>
       <svg className="absolute h-0 w-0" aria-hidden="true" focusable="false">
         <defs>
           <filter id="threshold">
@@ -110,13 +116,13 @@ export function GooeyText({
       </svg>
 
       <div
-        className="flex items-center justify-center"
+        className="flex items-center justify-start"
         style={{ filter: "url(#threshold)" }}
       >
         <span
           ref={text1Ref}
           className={cn(
-            "absolute inline-block select-none text-center",
+            "relative inline-block select-none text-left",
             "text-foreground",
             textClassName
           )}
@@ -124,7 +130,7 @@ export function GooeyText({
         <span
           ref={text2Ref}
           className={cn(
-            "absolute inline-block select-none text-center",
+            "relative inline-block select-none text-left",
             "text-foreground",
             textClassName
           )}
