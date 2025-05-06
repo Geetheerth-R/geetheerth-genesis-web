@@ -28,9 +28,9 @@ export function HeroSection() {
               </span>
             </h1>
             <div className="mb-6 py-px">
-              <p className="font-medium text-muted-foreground md:text-xl text-sm inline-flex items-center">
-                Computer Science & Engineering{" "}
-                <span className="ml-1">
+              <p className="font-medium text-muted-foreground md:text-xl text-sm flex items-center flex-wrap">
+                Computer Science & Engineering
+                <span className="inline-flex items-center ml-1">
                   <GooeyText 
                     texts={["Graduate", "Student"]} 
                     morphTime={1.5} 

@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -164,7 +163,7 @@ const knowledgeBase = {
   }
 };
 
-// Enhanced response generation with more detailed and structured replies
+// Enhanced response generation with more sophisticated NLP features
 const generateResponse = (query: string): string => {
   const lowerQuery = query.toLowerCase();
   
@@ -625,6 +624,51 @@ This portfolio website itself demonstrates his web development capabilities, fea
     }
   }
   
+  // Check for questions about AI-specific topics
+  if (lowerQuery.includes("ai") || lowerQuery.includes("machine learning") || lowerQuery.includes("artificial intelligence") || lowerQuery.includes("deep learning") || lowerQuery.includes("neural network")) {
+    return `🤖 Geetheerth's AI & Machine Learning Experience:
+
+Geetheerth has been exploring the field of Artificial Intelligence through:
+
+1. AI Projects:
+   • Integrated NLP capabilities in his WhatsApp chatbot project
+   • Used machine learning for plant health prediction in the AgriPulse project
+   • Worked on image recognition for security applications
+
+2. Technical Skills:
+   • Python libraries: TensorFlow, scikit-learn, PyTorch (basics)
+   • Experience with supervised and unsupervised learning algorithms
+   • Natural Language Processing techniques
+   • Data preprocessing and feature engineering
+
+3. Learning Focus:
+   • Currently expanding knowledge in deep learning architectures
+   • Exploring reinforcement learning concepts
+   • Interested in AI ethics and responsible AI development
+
+4. AI Applications of Interest:
+   • IoT integration with AI for smarter systems
+   • Computer vision for embedded systems
+   • Conversational AI and chatbots
+
+His approach to AI combines theoretical understanding with practical implementation, focusing on creating solutions that solve real-world problems.`;
+  }
+  
+  // Enhanced chatbot self-awareness
+  if (lowerQuery.includes("how do you work") || lowerQuery.includes("who made you") || lowerQuery.includes("how were you trained") || lowerQuery.includes("what are you") || (lowerQuery.includes("are you") && lowerQuery.includes("ai"))) {
+    return `I'm a specialized AI assistant for Geetheerth's portfolio website. I was designed to provide information about Geetheerth's education, skills, projects, and professional background.
+
+I'm built with a comprehensive knowledge base about Geetheerth that allows me to:
+• Answer questions about his technical skills
+• Provide details about his projects and experience
+• Share information about his education and background
+• Explain his areas of expertise and interests
+
+My responses are generated using pattern matching and natural language processing techniques to understand your questions and retrieve relevant information from my knowledge base.
+
+I'm constantly being improved to provide more accurate and helpful responses. If you have any questions about Geetheerth's background, skills, or projects, feel free to ask!`;
+  }
+  
   // If no specific pattern is matched, provide a helpful general response
   return `I'm Geetheerth's portfolio assistant. I can provide detailed information about his:
 
@@ -638,7 +682,7 @@ This portfolio website itself demonstrates his web development capabilities, fea
 What specific aspect would you like to learn more about? Just ask, and I'll provide you with detailed information!`;
 };
 
-// NLP helper functions to improve chatbot understanding
+// Enhanced NLP helper functions for better understanding
 const normalizeText = (text: string): string => {
   return text.toLowerCase().replace(/[^\w\s]/g, '');
 };
@@ -652,6 +696,7 @@ const findKeywords = (text: string): string[] => {
   const skillsKeywords = ['skill', 'know', 'ability', 'capable', 'programming', 'coding', 'technology', 'software', 'development', 'expertise'];
   const projectKeywords = ['project', 'work', 'portfolio', 'built', 'created', 'developed', 'made', 'implemented'];
   const contactKeywords = ['contact', 'email', 'reach', 'connect', 'touch'];
+  const aiKeywords = ['ai', 'artificial', 'intelligence', 'machine', 'learning', 'neural', 'network'];
   
   // Filter out common stop words and extract keywords
   const stopWords = ['and', 'the', 'is', 'in', 'it', 'to', 'i', 'you', 'what', 'how', 'can', 'do', 'does', 'about'];
@@ -661,11 +706,12 @@ const findKeywords = (text: string): string[] => {
      skillsKeywords.includes(word) || 
      projectKeywords.includes(word) || 
      contactKeywords.includes(word) ||
+     aiKeywords.includes(word) ||
      word.length > 3)
   );
 };
 
-// Enhanced response function that uses NLP concepts
+// Improved response function with better context awareness
 const getEnhancedResponse = (query: string): string => {
   // First try the direct pattern matching
   const directResponse = generateResponse(query);
@@ -689,15 +735,20 @@ const getEnhancedResponse = (query: string): string => {
       return generateResponse("projects");
     }
     
-    // If still no match, return a more helpful default response
+    // If there are AI-related keywords
+    if (keywords.some(word => ['ai', 'artificial', 'intelligence', 'machine', 'learning'].includes(word))) {
+      return generateResponse("ai");
+    }
+    
+    // If still no match, return a more helpful default response with examples
     return `I didn't quite understand what specific information you're looking for about Geetheerth. 
 
 You can ask me about:
-• His educational background
-• Technical skills and expertise
-• Projects he has worked on
-• Contact information
-• Personal interests and career goals
+• His educational background (e.g., "Where did Geetheerth study?")
+• Technical skills and expertise (e.g., "What programming languages does he know?")
+• Projects he has worked on (e.g., "Tell me about his IoT projects")
+• Contact information (e.g., "How can I get in touch with Geetheerth?")
+• Personal interests and career goals (e.g., "What are his career aspirations?")
 
 Could you please rephrase your question or specify what you'd like to know?`;
   }
