@@ -17,7 +17,7 @@ export function HeroSection() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 container py-0 my-[38px]">
         <div className="flex flex-col justify-center">
-          <div className={`transition-all duration-1000 delay-300 transform ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
+          <div className={`transition-all duration-1000 ease-out delay-300 transform ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
             <p className="text-tech-cyan mb-1 font-medium mx-0 my-0">
               Hello, I am
             </p>
@@ -36,40 +36,40 @@ export function HeroSection() {
               creative problem-solving, and continuous learning.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Button asChild className="rounded-xl px-6 py-6 bg-gradient-to-r from-tech-blue to-tech-purple hover:opacity-90 transition-all" size="lg">
+              <Button asChild className="rounded-xl px-6 py-6 bg-gradient-to-r from-tech-blue to-tech-purple hover:opacity-90 transition-all duration-500 transform hover:scale-[1.02] shadow-md hover:shadow-lg" size="lg">
                 <a href="/contact#contact-form">Get in Touch</a>
               </Button>
-              <Button asChild variant="outline" className="rounded-xl px-6 py-6 border-tech-blue text-tech-blue hover:bg-tech-blue/10" size="lg">
+              <Button asChild variant="outline" className="rounded-xl px-6 py-6 border-tech-blue text-tech-blue hover:bg-tech-blue/10 transition-all duration-500 transform hover:scale-[1.02] shadow-sm hover:shadow-md" size="lg">
                 <a href="/projects">View Work</a>
               </Button>
             </div>
           </div>
         </div>
 
-        <div className={`flex items-center justify-center transition-all duration-1000 delay-500 transform ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
+        <div className={`flex items-center justify-center transition-all duration-1000 ease-out delay-500 transform ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-tech-blue to-tech-purple rounded-full blur-3xl opacity-30 animate-pulse"></div>
-            <div className="relative z-10 bg-dark-100 p-8 rounded-3xl border border-white/10 shadow-xl backdrop-blur-sm">
+            <div className="relative z-10 bg-dark-100 p-8 rounded-3xl border border-white/10 shadow-xl backdrop-blur-sm transform transition-transform duration-700 hover:scale-[1.02]">
               <div className="grid grid-cols-2 gap-4">
-                <div className="bg-dark-200 p-4 rounded-xl flex flex-col items-center justify-center text-center animate-float">
+                <div className="bg-dark-200 p-4 rounded-xl flex flex-col items-center justify-center text-center animate-float transition-all duration-500 hover:shadow-md hover:bg-dark-200/80 hover:-translate-y-1">
                   <div className="w-12 h-12 bg-tech-blue/20 rounded-full flex items-center justify-center mb-2">
                     <span className="text-tech-blue text-xl font-bold">AI</span>
                   </div>
                   <p className="text-sm mt-2">Artificial Intelligence</p>
                 </div>
-                <div className="bg-dark-200 p-4 rounded-xl flex flex-col items-center justify-center text-center animate-float animation-delay-500">
+                <div className="bg-dark-200 p-4 rounded-xl flex flex-col items-center justify-center text-center animate-float animation-delay-500 transition-all duration-500 hover:shadow-md hover:bg-dark-200/80 hover:-translate-y-1">
                   <div className="w-12 h-12 bg-tech-purple/20 rounded-full flex items-center justify-center mb-2">
                     <span className="text-tech-purple text-xl font-bold">FE</span>
                   </div>
                   <p className="text-sm mt-2">Frontend Dev</p>
                 </div>
-                <div className="bg-dark-200 p-4 rounded-xl flex flex-col items-center justify-center text-center animate-float animation-delay-1000">
+                <div className="bg-dark-200 p-4 rounded-xl flex flex-col items-center justify-center text-center animate-float animation-delay-1000 transition-all duration-500 hover:shadow-md hover:bg-dark-200/80 hover:-translate-y-1">
                   <div className="w-12 h-12 bg-tech-red/20 rounded-full flex items-center justify-center mb-2">
                     <span className="text-tech-red text-xl font-bold">ES</span>
                   </div>
                   <p className="text-sm mt-2">Embedded Systems</p>
                 </div>
-                <div className="bg-dark-200 p-4 rounded-xl flex flex-col items-center justify-center text-center animate-float animation-delay-1500">
+                <div className="bg-dark-200 p-4 rounded-xl flex flex-col items-center justify-center text-center animate-float animation-delay-1500 transition-all duration-500 hover:shadow-md hover:bg-dark-200/80 hover:-translate-y-1">
                   <div className="w-12 h-12 bg-tech-cyan/20 rounded-full flex items-center justify-center mb-2">
                     <span className="text-tech-cyan text-xl font-bold">OS</span>
                   </div>
@@ -84,7 +84,7 @@ export function HeroSection() {
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
         <Button variant="ghost" size="icon" onClick={() => document.getElementById("about")?.scrollIntoView({
         behavior: "smooth"
-      })} className="rounded-full w-12 h-12 border border-primary/20 py-0 my-0 mx-[240px]">
+      })} className="rounded-full w-12 h-12 border border-primary/20 py-0 my-0 mx-[240px] transition-all duration-300 hover:bg-primary/5 hover:border-primary/30 hover:scale-110">
           <ArrowDown size={20} />
         </Button>
       </div>

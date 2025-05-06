@@ -89,14 +89,15 @@ export function Header() {
             <Link 
               key={item.path} 
               to={item.path} 
-              className={`px-3 py-2 rounded-lg transition-all duration-300 ${
+              className={`px-3 py-2 rounded-lg transition-all duration-300 relative overflow-hidden ${
                 activePath === item.path 
                   ? "text-primary font-medium" 
-                  : `hover:text-primary relative group ${theme === "light" ? "text-gray-700" : ""}`
+                  : `text-foreground group ${theme === "light" ? "text-gray-700" : ""}`
               }`}
             >
-              {item.name}
-              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-tech-blue to-tech-purple transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
+              <span className="relative z-10">{item.name}</span>
+              <span className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-tech-blue to-tech-purple transform origin-left transition-transform duration-300 scale-x-0 group-hover:scale-x-100"></span>
+              <span className="absolute inset-0 bg-gradient-to-r from-tech-blue/5 to-tech-purple/5 opacity-0 group-hover:opacity-100 transform scale-95 group-hover:scale-100 transition-all duration-300 rounded-md -z-0"></span>
             </Link>
           ))}
           <div className="ml-2">
