@@ -2,7 +2,6 @@
 import { ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
-import { GooeyText } from "@/components/ui/gooey-text";
 
 export function HeroSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -25,19 +24,11 @@ export function HeroSection() {
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold font-poppins mb-4 py-px">
               <span className="hero-gradient animate-text-shimmer bg-[length:200%_auto] text-4xl relative inline-block">
                 Geetheerth R
-                <span className="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-tech-blue to-tech-purple"></span>
               </span>
             </h1>
             <div className="mb-6 py-px">
               <p className="font-medium text-muted-foreground md:text-xl text-sm flex items-center">
-                Computer Science & Engineering
-                <GooeyText 
-                  texts={["Graduate", "Student"]} 
-                  morphTime={1.5} 
-                  cooldownTime={2}
-                  textClassName="text-sm md:text-xl font-medium text-tech-blue ml-1" 
-                  className="inline-block"
-                />
+                Computer Science & Engineering <span className="text-tech-blue ml-1">Student</span>
               </p>
             </div>
             <p className="text-muted-foreground max-w-lg mb-8 text-base">

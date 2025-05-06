@@ -72,8 +72,13 @@ export function Header() {
     <header className={headerClass}>
       <div className="container mx-auto flex justify-between items-center">
         <Link to="/" className="flex items-center gap-2">
-          <div className={`w-10 h-10 ${theme === "dark" ? "bg-gradient-to-br from-tech-blue to-tech-purple" : "bg-gradient-to-br from-tech-blue to-blue-400"} rounded-lg flex items-center justify-center`}>
-            <span className="text-lg font-bold text-white">GR</span>
+          <div className="relative">
+            <div className={`w-10 h-10 ${theme === "dark" ? "bg-gradient-to-br from-tech-blue to-tech-purple" : "bg-gradient-to-br from-tech-blue to-blue-400"} rounded-lg flex items-center justify-center shadow-lg group overflow-hidden`}>
+              <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute -inset-1 bg-gradient-to-r from-tech-blue via-tech-purple to-tech-red opacity-30 blur-sm -z-10 group-hover:opacity-40 transition-opacity duration-300"></div>
+              <span className="text-lg font-bold text-white relative z-10">GR</span>
+            </div>
+            <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-tech-cyan rounded-full shadow-lg"></div>
           </div>
           <span className="font-poppins font-bold tracking-tight text-lg">Geetheerth R</span>
         </Link>
