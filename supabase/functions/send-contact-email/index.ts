@@ -51,31 +51,31 @@ const handler = async (req: Request): Promise<Response> => {
       `,
     });
     
-    // Send confirmation email to the sender
-    const emailToSender = await resend.emails.send({
+    // Instead of trying to send directly to the user (which fails due to Resend limitations),
+    // send a notification to the site owner with instructions to reply to the user
+    const confirmationNotification = await resend.emails.send({
       from: "Geetheerth R <onboarding@resend.dev>",
-      to: [email],
-      subject: "Thank you for your message",
+      to: ["geetheerth@gmail.com"],
+      subject: `[ACTION REQUIRED] Contact form submission from ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
-          <h2 style="color: #4263eb;">Thank You for Contacting Me</h2>
-          <p>Hello ${name},</p>
-          <p>Thank you for reaching out to me. I have received your message regarding <strong>"${subject || "your inquiry"}"</strong>.</p>
-          <p>I will review your message and get back to you as soon as possible, typically within 24-48 hours.</p>
-          <p>For your reference, here's a copy of your message:</p>
+          <h2 style="color: #4263eb;">Contact Form Notification</h2>
+          <p>Hello Geetheerth,</p>
+          <p><strong>${name}</strong> with email <strong>${email}</strong> has submitted a contact form message.</p>
+          <p>Please send them a confirmation email manually as Resend's free tier only allows sending to verified email addresses.</p>
+          <p>Here's a template you can use to reply to ${email}:</p>
           <div style="background-color: #f5f5f5; padding: 15px; border-left: 4px solid #4263eb; margin: 20px 0;">
-            ${message.replace(/\n/g, "<br/>")}
-          </div>
-          <p>If you have any additional information to share, feel free to reply to this email.</p>
-          <p>Best regards,<br/>Geetheerth R</p>
-          <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; font-size: 12px; color: #777;">
-            <p>This is an automated response. Please do not reply to this email address.</p>
+            <p>Subject: Thank you for your message</p>
+            <p>Hello ${name},</p>
+            <p>Thank you for reaching out to me. I have received your message regarding "${subject || "your inquiry"}".</p>
+            <p>I will review your message and get back to you as soon as possible, typically within 24-48 hours.</p>
+            <p>Best regards,<br/>Geetheerth R</p>
           </div>
         </div>
       `,
     });
 
-    console.log("Emails sent successfully:", { ownerEmail: emailToOwner, senderEmail: emailToSender });
+    console.log("Emails sent successfully:", { ownerEmail: emailToOwner, confirmationEmail: confirmationNotification });
 
     return new Response(JSON.stringify({ success: true }), {
       status: 200,

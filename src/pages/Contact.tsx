@@ -46,6 +46,15 @@ const Contact = () => {
         description: "Thank you for your message. I'll get back to you soon."
       });
       
+      // For non-verified emails, show an additional toast
+      if (formData.email !== "geetheerth@gmail.com") {
+        toast({
+          title: "Email Confirmation",
+          description: "Due to email service limitations, a confirmation email couldn't be sent to your address. However, your message has been received and will be processed.",
+          duration: 6000
+        });
+      }
+      
       // Reset form
       setFormData({
         name: "",
@@ -224,4 +233,5 @@ const Contact = () => {
       <Footer />
     </div>;
 };
+
 export default Contact;
