@@ -78,7 +78,7 @@ const Texts: React.FC<Pick<MorphingTextProps, "texts">> = ({
   } = useMorphingText(texts);
   return <>
       <span className="absolute inset-x-0 top-0 m-auto inline-block w-full" ref={text1Ref} />
-      <span ref={text2Ref} className="absolute inset-x-0 top-0 m-auto inline-block w-full text-left" />
+      <span ref={text2Ref} className="absolute inset-x-0 top-0 m-auto inline-block w-full text-center" />
     </>;
 };
 const SvgFilters: React.FC = () => <svg id="filters" className="hidden" preserveAspectRatio="xMidYMid slice">
