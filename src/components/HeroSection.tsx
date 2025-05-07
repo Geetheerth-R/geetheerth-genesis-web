@@ -27,8 +27,8 @@ export function HeroSection() {
               </span>
             </h1>
             <div className="mb-6 py-px">
-              <p className="font-medium text-muted-foreground md:text-xl text-sm flex items-center">
-                Computer Science & Engineering <span className="text-tech-blue ml-1">Student</span>
+              <p className="font-medium text-muted-foreground md:text-xl text-sm">
+                Computer Science & Engineering Student
               </p>
             </div>
             <p className="text-muted-foreground max-w-lg mb-8 text-base">
@@ -51,25 +51,25 @@ export function HeroSection() {
             <div className="absolute inset-0 bg-gradient-to-r from-tech-blue to-tech-purple rounded-full blur-3xl opacity-30 animate-pulse"></div>
             <div className="relative z-10 bg-dark-100 p-8 rounded-3xl border border-white/10 shadow-xl backdrop-blur-sm transform transition-transform duration-700 hover:scale-[1.02]">
               <div className="grid grid-cols-2 gap-4">
-                <div className="bg-dark-200 p-4 rounded-xl flex flex-col items-center justify-center text-center animate-float transition-all duration-500 hover:shadow-md hover:bg-dark-200/80 hover:-translate-y-1">
+                <div className="bg-dark-200 p-4 rounded-xl flex flex-col items-center justify-center text-center transition-all duration-500 hover:shadow-md hover:bg-dark-200/80 hover:-translate-y-1" style={{ animation: "float 15s ease-in-out infinite" }}>
                   <div className="w-12 h-12 bg-tech-blue/20 rounded-full flex items-center justify-center mb-2">
                     <span className="text-tech-blue text-xl font-bold">AI</span>
                   </div>
                   <p className="text-sm mt-2">Artificial Intelligence</p>
                 </div>
-                <div className="bg-dark-200 p-4 rounded-xl flex flex-col items-center justify-center text-center animate-float animation-delay-500 transition-all duration-500 hover:shadow-md hover:bg-dark-200/80 hover:-translate-y-1">
+                <div className="bg-dark-200 p-4 rounded-xl flex flex-col items-center justify-center text-center transition-all duration-500 hover:shadow-md hover:bg-dark-200/80 hover:-translate-y-1" style={{ animation: "float 15s ease-in-out infinite 2s" }}>
                   <div className="w-12 h-12 bg-tech-purple/20 rounded-full flex items-center justify-center mb-2">
                     <span className="text-tech-purple text-xl font-bold">FE</span>
                   </div>
                   <p className="text-sm mt-2">Frontend Dev</p>
                 </div>
-                <div className="bg-dark-200 p-4 rounded-xl flex flex-col items-center justify-center text-center animate-float animation-delay-1000 transition-all duration-500 hover:shadow-md hover:bg-dark-200/80 hover:-translate-y-1">
+                <div className="bg-dark-200 p-4 rounded-xl flex flex-col items-center justify-center text-center transition-all duration-500 hover:shadow-md hover:bg-dark-200/80 hover:-translate-y-1" style={{ animation: "float 15s ease-in-out infinite 4s" }}>
                   <div className="w-12 h-12 bg-tech-red/20 rounded-full flex items-center justify-center mb-2">
                     <span className="text-tech-red text-xl font-bold">ES</span>
                   </div>
                   <p className="text-sm mt-2">Embedded Systems</p>
                 </div>
-                <div className="bg-dark-200 p-4 rounded-xl flex flex-col items-center justify-center text-center animate-float animation-delay-1500 transition-all duration-500 hover:shadow-md hover:bg-dark-200/80 hover:-translate-y-1">
+                <div className="bg-dark-200 p-4 rounded-xl flex flex-col items-center justify-center text-center transition-all duration-500 hover:shadow-md hover:bg-dark-200/80 hover:-translate-y-1" style={{ animation: "float 15s ease-in-out infinite 6s" }}>
                   <div className="w-12 h-12 bg-tech-cyan/20 rounded-full flex items-center justify-center mb-2">
                     <span className="text-tech-cyan text-xl font-bold">OS</span>
                   </div>
