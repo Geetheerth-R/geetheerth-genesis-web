@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ThemeSwitcher } from "./ThemeSwitcher";
@@ -71,7 +72,7 @@ export function Header() {
   return (
     <header className={headerClass}>
       <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-1">
           <div className="relative">
             <div className={`w-10 h-10 ${theme === "dark" ? "bg-gradient-to-br from-tech-blue to-tech-purple" : "bg-gradient-to-br from-tech-blue to-blue-400"} rounded-lg flex items-center justify-center shadow-lg group overflow-hidden`}>
               <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -80,7 +81,7 @@ export function Header() {
             </div>
             <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-tech-cyan rounded-full shadow-lg"></div>
           </div>
-          <div className="h-6 w-36 flex items-center">
+          <div className="h-6 flex items-center ml-1">
             <MorphingText 
               texts={["Geetheerth R", "Portfolio"]} 
               className="text-sm font-poppins font-medium tracking-tight text-foreground h-6" 

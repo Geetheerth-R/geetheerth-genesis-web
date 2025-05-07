@@ -2,26 +2,37 @@
 
 import { useCallback, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
+
 const morphTime = 1.5;
 const cooldownTime = 0.5;
+
 const useMorphingText = (texts: string[]) => {
   const textIndexRef = useRef(0);
   const morphRef = useRef(0);
   const cooldownRef = useRef(0);
   const timeRef = useRef(new Date());
+
   const text1Ref = useRef<HTMLSpanElement>(null);
   const text2Ref = useRef<HTMLSpanElement>(null);
-  const setStyles = useCallback((fraction: number) => {
-    const [current1, current2] = [text1Ref.current, text2Ref.current];
-    if (!current1 || !current2) return;
-    current2.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
-    current2.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
-    const invertedFraction = 1 - fraction;
-    current1.style.filter = `blur(${Math.min(8 / invertedFraction - 8, 100)}px)`;
-    current1.style.opacity = `${Math.pow(invertedFraction, 0.4) * 100}%`;
-    current1.textContent = texts[textIndexRef.current % texts.length];
-    current2.textContent = texts[(textIndexRef.current + 1) % texts.length];
-  }, [texts]);
+
+  const setStyles = useCallback(
+    (fraction: number) => {
+      const [current1, current2] = [text1Ref.current, text2Ref.current];
+      if (!current1 || !current2) return;
+
+      current2.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
+      current2.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+
+      const invertedFraction = 1 - fraction;
+      current1.style.filter = `blur(${Math.min(8 / invertedFraction - 8, 100)}px)`;
+      current1.style.opacity = `${Math.pow(invertedFraction, 0.4) * 100}%`;
+
+      current1.textContent = texts[textIndexRef.current % texts.length];
+      current2.textContent = texts[(textIndexRef.current + 1) % texts.length];
+    },
+    [texts],
+  );
+
   const doMorph = useCallback(() => {
     morphRef.current -= cooldownRef.current;
     cooldownRef.current = 0;
@@ -35,6 +46,7 @@ const useMorphingText = (texts: string[]) => {
       textIndexRef.current++;
     }
   }, [setStyles]);
+
   const doCooldown = useCallback(() => {
     morphRef.current = 0;
     const [current1, current2] = [text1Ref.current, text2Ref.current];
@@ -45,6 +57,7 @@ const useMorphingText = (texts: string[]) => {
       current1.style.opacity = "0%";
     }
   }, []);
+
   useEffect(() => {
     let animationFrameId: number;
     const animate = () => {
@@ -60,42 +73,58 @@ const useMorphingText = (texts: string[]) => {
       cancelAnimationFrame(animationFrameId);
     };
   }, [doMorph, doCooldown]);
-  return {
-    text1Ref,
-    text2Ref
-  };
+
+  return { text1Ref, text2Ref };
 };
+
 interface MorphingTextProps {
   className?: string;
   texts: string[];
 }
-const Texts: React.FC<Pick<MorphingTextProps, "texts">> = ({
-  texts
-}) => {
-  const {
-    text1Ref,
-    text2Ref
-  } = useMorphingText(texts);
-  return <>
-      <span className="absolute inset-x-0 top-0 m-auto inline-block w-full" ref={text1Ref} />
-      <span ref={text2Ref} className="absolute inset-x-0 top-0 m-auto inline-block w-full text-center" />
-    </>;
+
+const Texts: React.FC<Pick<MorphingTextProps, "texts">> = ({ texts }) => {
+  const { text1Ref, text2Ref } = useMorphingText(texts);
+  return (
+    <>
+      <span
+        className="absolute inset-x-0 top-0 m-auto inline-block w-full"
+        ref={text1Ref}
+      />
+      <span
+        ref={text2Ref}
+        className="absolute inset-x-0 top-0 m-auto inline-block w-full text-center"
+      />
+    </>
+  );
 };
-const SvgFilters: React.FC = () => <svg id="filters" className="hidden" preserveAspectRatio="xMidYMid slice">
+
+const SvgFilters: React.FC = () => (
+  <svg id="filters" className="hidden" preserveAspectRatio="xMidYMid slice">
     <defs>
       <filter id="threshold">
-        <feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0
+        <feColorMatrix
+          in="SourceGraphic"
+          type="matrix"
+          values="1 0 0 0 0
                   0 1 0 0 0
                   0 0 1 0 0
-                  0 0 0 255 -140" />
+                  0 0 0 255 -140"
+        />
       </filter>
     </defs>
-  </svg>;
-const MorphingText: React.FC<MorphingTextProps> = ({
-  texts,
-  className
-}) => <div className={cn("relative mx-auto h-6 w-full text-center font-sans text-base font-medium leading-normal [filter:url(#threshold)_blur(0.6px)]", className)}>
+  </svg>
+);
+
+const MorphingText: React.FC<MorphingTextProps> = ({ texts, className }) => (
+  <div
+    className={cn(
+      "relative mx-auto h-6 w-full text-center font-sans text-base font-medium leading-normal [filter:url(#threshold)_blur(0.6px)]",
+      className
+    )}
+  >
     <Texts texts={texts} />
     <SvgFilters />
-  </div>;
+  </div>
+);
+
 export { MorphingText };
