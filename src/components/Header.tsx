@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ThemeSwitcher } from "./ThemeSwitcher";
@@ -81,10 +80,10 @@ export function Header() {
             </div>
             <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-tech-cyan rounded-full shadow-lg"></div>
           </div>
-          <div className="h-8 w-44 relative">
+          <div className="h-6 w-36 flex items-center">
             <MorphingText 
               texts={["Geetheerth R", "Portfolio"]} 
-              className="text-base h-8 font-poppins font-bold tracking-tight text-foreground" 
+              className="text-sm font-poppins font-medium tracking-tight text-foreground h-6" 
             />
           </div>
         </Link>
