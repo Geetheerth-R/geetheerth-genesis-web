@@ -23,8 +23,8 @@ const pageVariants = {
 
 const pageTransition = {
   type: "tween",
-  ease: [0.25, 0.1, 0.25, 1], // Cubic bezier for smoother motion
-  duration: 0.8, // Slightly increased for smoother transition
+  ease: "easeInOut", // Updated for smoother transitions
+  duration: 0.6,
 };
 
 export const PageTransition = ({ children }: PageTransitionProps) => {

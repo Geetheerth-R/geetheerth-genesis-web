@@ -7,6 +7,7 @@ import { Menu, FileImage, Download, MessageSquare } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useTheme } from "./ThemeProvider";
 import { useChatToggle } from "@/context/ChatContext";
+import { MorphingText } from "./ui/morphing-text";
 
 const navItems = [
   {
@@ -80,7 +81,12 @@ export function Header() {
             </div>
             <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-tech-cyan rounded-full shadow-lg"></div>
           </div>
-          <span className="font-poppins font-bold tracking-tight text-lg">Geetheerth R</span>
+          <div className="h-8 w-44 relative">
+            <MorphingText 
+              texts={["Geetheerth R", "Portfolio"]} 
+              className="text-base h-8 font-poppins font-bold tracking-tight text-foreground" 
+            />
+          </div>
         </Link>
 
         {/* Desktop Navigation */}
@@ -89,15 +95,17 @@ export function Header() {
             <Link 
               key={item.path} 
               to={item.path} 
-              className={`px-3 py-2 rounded-lg transition-all duration-300 relative overflow-hidden ${
+              className={`px-3 py-2 rounded-lg transition-all duration-300 relative group ${
                 activePath === item.path 
                   ? "text-primary font-medium" 
-                  : `text-foreground group ${theme === "light" ? "text-gray-700" : ""}`
+                  : `text-foreground ${theme === "light" ? "text-gray-700" : ""}`
               }`}
             >
               <span className="relative z-10">{item.name}</span>
-              <span className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-tech-blue to-tech-purple transform origin-left transition-transform duration-300 scale-x-0 group-hover:scale-x-100"></span>
-              <span className="absolute inset-0 bg-gradient-to-r from-tech-blue/5 to-tech-purple/5 opacity-0 group-hover:opacity-100 transform scale-95 group-hover:scale-100 transition-all duration-300 rounded-md -z-0"></span>
+              {/* Enhanced hover effect with multiple layers */}
+              <span className="absolute inset-0 bg-gradient-to-r from-tech-blue/5 to-tech-purple/5 opacity-0 group-hover:opacity-100 transform origin-left scale-x-0 group-hover:scale-x-100 transition-all duration-500 rounded-md -z-0"></span>
+              <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-tech-blue to-tech-purple transform origin-left scale-x-0 group-hover:scale-x-100 transition-all duration-300 ease-out"></span>
+              <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-tech-cyan/50 transform-gpu origin-right scale-x-0 group-hover:scale-x-75 transition-all duration-700 delay-75 ease-in-out"></span>
             </Link>
           ))}
           <div className="ml-2">

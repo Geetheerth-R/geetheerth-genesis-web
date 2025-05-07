@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -94,7 +95,8 @@ export default {
         },
         "float": {
           "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-4px)" },
+          // Reduced vertical movement and slowed animation by making it subtler
+          "50%": { transform: "translateY(-2px)" }, 
         },
         "pulse-glow": {
           "0%, 100%": { opacity: "0.6" },
@@ -104,6 +106,10 @@ export default {
           "0%": { backgroundPosition: "-200% 0" },
           "100%": { backgroundPosition: "200% 0" },
         },
+        "soft-bounce": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-4px)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -111,13 +117,19 @@ export default {
         "fade-in": "fade-in 0.7s ease-out",
         "fade-in-up": "fade-in-up 0.7s ease-out",
         "fade-in-down": "fade-in-down 0.7s ease-out",
-        "float": "float 10s ease-in-out infinite", 
+        // Increased duration for a much slower float animation
+        "float": "float 15s ease-in-out infinite", 
         "pulse-glow": "pulse-glow 3s infinite",
         "text-shimmer": "text-shimmer 3s infinite linear",
+        "soft-bounce": "soft-bounce 2s ease-in-out infinite",
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],
         poppins: ["Poppins", "sans-serif"],
+      },
+      transitionTimingFunction: {
+        'natural': 'cubic-bezier(0.4, 0.0, 0.2, 1)',
+        'smooth': 'cubic-bezier(0.65, 0, 0.35, 1)',
       },
     },
   },
