@@ -64,29 +64,35 @@ export function Header() {
   const headerClass = `fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
     scrolled
       ? theme === "dark" 
-        ? "bg-dark-300/90 backdrop-blur-md shadow-md py-2" 
-        : "bg-white/90 backdrop-blur-md shadow-md py-2"
-      : "py-4"
+        ? "bg-dark-300/80 backdrop-blur-md shadow-md py-2" 
+        : "bg-white/80 backdrop-blur-md shadow-md py-2"
+      : theme === "dark"
+        ? "bg-gradient-to-r from-dark-400/60 to-dark-300/60 backdrop-blur-lg py-4"
+        : "bg-gradient-to-r from-white/70 to-white/80 backdrop-blur-lg py-4"
   }`;
 
   return (
     <header className={headerClass}>
       <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="flex items-center gap-1">
+        <Link to="/" className="flex items-center gap-1.5">
           <div className="relative">
             <div className={`w-10 h-10 ${theme === "dark" ? "bg-gradient-to-br from-tech-blue to-tech-purple" : "bg-gradient-to-br from-tech-blue to-blue-400"} rounded-lg flex items-center justify-center shadow-lg group overflow-hidden`}>
               <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="absolute -inset-1 bg-gradient-to-r from-tech-blue via-tech-purple to-tech-red opacity-30 blur-sm -z-10 group-hover:opacity-40 transition-opacity duration-300"></div>
-              <span className="text-lg font-bold text-white relative z-10">GR</span>
+              <div className="relative z-10 flex items-center justify-center">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2L4 6V18L12 22L20 18V6L12 2Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M12 22V12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M20 6L12 12L4 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
             </div>
             <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-tech-cyan rounded-full shadow-lg"></div>
           </div>
-          <div className="h-6 flex items-center ml-1">
-            <MorphingText 
-              texts={["Geetheerth R", "Portfolio"]} 
-              className="text-sm font-poppins font-medium tracking-tight text-foreground h-6" 
-            />
-          </div>
+          <MorphingText 
+            texts={["Geetheerth R", "Portfolio"]} 
+            className="text-sm font-poppins font-medium tracking-tight text-foreground" 
+          />
         </Link>
 
         {/* Desktop Navigation */}
