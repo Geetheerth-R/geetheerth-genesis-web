@@ -57,6 +57,15 @@ const projects = [{
   demo: "https://demo.com",
   featured: true,
   domains: ["iot", "ai"]
+}, {
+  title: "Wind tunnel",
+  description: "A device that will be used to check the aerodynamics of the air crafts to test it before the actual implementation.",
+  tech: ["Testing", "Aerodynamics", "Prototype"],
+  image: "/lovable-uploads/5d2a9cdf-dd3a-4e43-9905-30822af9cd74.png",
+  github: "https://github.com",
+  demo: "https://demo.com",
+  featured: true,
+  domains: ["aero"]
 }];
 
 const Projects = () => {
