@@ -7,7 +7,6 @@ import { Menu, FileImage, Download, MessageSquare } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useTheme } from "./ThemeProvider";
 import { useChatToggle } from "@/context/ChatContext";
-import { MorphingText } from "./ui/morphing-text";
 
 const navItems = [
   {
@@ -35,6 +34,44 @@ const navItems = [
     path: "/contact"
   }
 ];
+
+const MorphingLogo = () => {
+  const [showText, setShowText] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setShowText(prev => !prev);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="relative w-10 h-10 bg-gradient-to-br from-tech-blue to-tech-purple rounded-lg flex items-center justify-center shadow-lg group overflow-hidden">
+      <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      <div className="absolute -inset-1 bg-gradient-to-r from-tech-blue via-tech-purple to-tech-red opacity-30 blur-sm -z-10 group-hover:opacity-40 transition-opacity duration-300"></div>
+      
+      {/* Cube Icon */}
+      <div className={`absolute inset-0 flex items-center justify-center transition-all duration-700 ease-in-out ${
+        showText ? 'opacity-0 scale-50 rotate-180' : 'opacity-100 scale-100 rotate-0'
+      }`}>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L4 6V18L12 22L20 18V6L12 2Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M12 22V12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M20 6L12 12L4 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </div>
+      
+      {/* GR Text */}
+      <div className={`absolute inset-0 flex items-center justify-center transition-all duration-700 ease-in-out ${
+        showText ? 'opacity-100 scale-100 rotate-0' : 'opacity-0 scale-50 rotate-180'
+      }`}>
+        <span className="text-white font-bold text-sm">GR</span>
+      </div>
+      
+      <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-tech-cyan rounded-full shadow-lg"></div>
+    </div>
+  );
+};
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -74,25 +111,11 @@ export function Header() {
   return (
     <header className={headerClass}>
       <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="flex items-center gap-1.5">
-          <div className="relative">
-            <div className={`w-10 h-10 ${theme === "dark" ? "bg-gradient-to-br from-tech-blue to-tech-purple" : "bg-gradient-to-br from-tech-blue to-blue-400"} rounded-lg flex items-center justify-center shadow-lg group overflow-hidden`}>
-              <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div className="absolute -inset-1 bg-gradient-to-r from-tech-blue via-tech-purple to-tech-red opacity-30 blur-sm -z-10 group-hover:opacity-40 transition-opacity duration-300"></div>
-              <div className="relative z-10 flex items-center justify-center">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 2L4 6V18L12 22L20 18V6L12 2Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M12 22V12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M20 6L12 12L4 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
-            </div>
-            <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-tech-cyan rounded-full shadow-lg"></div>
-          </div>
-          <MorphingText 
-            texts={["Geetheerth R", "Portfolio"]} 
-            className="text-sm font-poppins font-medium tracking-tight text-foreground" 
-          />
+        <Link to="/" className="flex items-center gap-3">
+          <MorphingLogo />
+          <span className="text-sm font-poppins font-medium tracking-tight text-foreground">
+            Geetheerth R
+          </span>
         </Link>
 
         {/* Desktop Navigation */}

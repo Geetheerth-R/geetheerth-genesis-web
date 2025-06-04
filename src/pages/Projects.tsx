@@ -7,6 +7,7 @@ import { Github, ExternalLink, ChevronLeft } from "lucide-react";
 import { PageTransition } from "@/components/PageTransition";
 import { Chatbot } from "@/components/Chatbot";
 import { ProjectDomains } from "@/components/ProjectDomains";
+import { motion, AnimatePresence } from "framer-motion";
 
 // Project domains
 const domains = [
@@ -68,6 +69,12 @@ const projects = [{
   domains: ["aero"]
 }];
 
+const fadeVariants = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -20 }
+};
+
 const Projects = () => {
   const [selectedDomain, setSelectedDomain] = useState<string | null>(null);
   
@@ -89,88 +96,117 @@ const Projects = () => {
               </p>
             </div>
 
-            {selectedDomain ? (
-              <div className="mb-8">
-                <Button 
-                  variant="ghost" 
-                  className="mb-4 flex items-center gap-2" 
-                  onClick={() => setSelectedDomain(null)}
+            <AnimatePresence mode="wait">
+              {selectedDomain ? (
+                <motion.div 
+                  key="projects-view"
+                  variants={fadeVariants}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  transition={{ duration: 0.4, ease: "easeInOut" }}
+                  className="mb-8"
                 >
-                  <ChevronLeft size={16} />
-                  Back to all domains
-                </Button>
-                
-                <h2 className="text-2xl font-semibold mb-8 text-tech-blue">
-                  {domains.find(d => d.id === selectedDomain)?.name} Projects
-                </h2>
-                
-                {filteredProjects.length > 0 ? (
-                  <div className="grid gap-8">
-                    {filteredProjects.map((project, index) => (
-                      <div key={index} className="bg-dark-100 rounded-xl overflow-hidden shadow-lg">
-                        <div className="grid md:grid-cols-2 gap-0">
-                          <div className="h-64 md:h-auto overflow-hidden">
-                            <img 
-                              src={project.image} 
-                              alt={project.title} 
-                              className="w-full h-full hover:scale-110 transition-transform duration-300 object-cover" 
-                              style={{ aspectRatio: '16/10', objectFit: 'cover' }}
-                            />
-                          </div>
-                          <div className="p-6 flex flex-col">
-                            <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                            <p className="text-muted-foreground mb-4 flex-grow">{project.description}</p>
-                            
-                            <div className="mb-4">
-                              <div className="flex flex-wrap gap-2">
-                                {project.tech.map((tech, techIndex) => (
-                                  <span key={techIndex} className="px-3 py-1 bg-dark-200 text-xs rounded-full">
-                                    {tech}
-                                  </span>
-                                ))}
-                              </div>
+                  <Button 
+                    variant="ghost" 
+                    className="mb-4 flex items-center gap-2" 
+                    onClick={() => setSelectedDomain(null)}
+                  >
+                    <ChevronLeft size={16} />
+                    Back to all domains
+                  </Button>
+                  
+                  <h2 className="text-2xl font-semibold mb-8 text-tech-blue">
+                    {domains.find(d => d.id === selectedDomain)?.name} Projects
+                  </h2>
+                  
+                  {filteredProjects.length > 0 ? (
+                    <div className="grid gap-8">
+                      {filteredProjects.map((project, index) => (
+                        <motion.div 
+                          key={index} 
+                          initial={{ opacity: 0, y: 30 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.5, delay: index * 0.1 }}
+                          className="bg-dark-100 rounded-xl overflow-hidden shadow-lg"
+                        >
+                          <div className="grid md:grid-cols-2 gap-0">
+                            <div className="h-64 md:h-auto overflow-hidden">
+                              <img 
+                                src={project.image} 
+                                alt={project.title} 
+                                className="w-full h-full hover:scale-110 transition-transform duration-300 object-cover" 
+                                style={{ aspectRatio: '16/10', objectFit: 'cover' }}
+                              />
                             </div>
-                            
-                            <div className="flex gap-3">
-                              <Button asChild variant="outline" size="sm" className="rounded-lg">
-                                <a href={project.github} target="_blank" rel="noopener noreferrer">
-                                  <Github className="mr-2 h-4 w-4" />
-                                  Code
-                                </a>
-                              </Button>
-                              {project.demo && (
-                                <Button asChild size="sm" className="rounded-lg">
-                                  <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                                    <ExternalLink className="mr-2 h-4 w-4" />
-                                    Live Demo
+                            <div className="p-6 flex flex-col">
+                              <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+                              <p className="text-muted-foreground mb-4 flex-grow">{project.description}</p>
+                              
+                              <div className="mb-4">
+                                <div className="flex flex-wrap gap-2">
+                                  {project.tech.map((tech, techIndex) => (
+                                    <span key={techIndex} className="px-3 py-1 bg-dark-200 text-xs rounded-full">
+                                      {tech}
+                                    </span>
+                                  ))}
+                                </div>
+                              </div>
+                              
+                              <div className="flex gap-3">
+                                <Button asChild variant="outline" size="sm" className="rounded-lg">
+                                  <a href={project.github} target="_blank" rel="noopener noreferrer">
+                                    <Github className="mr-2 h-4 w-4" />
+                                    Code
                                   </a>
                                 </Button>
-                              )}
+                                {project.demo && (
+                                  <Button asChild size="sm" className="rounded-lg">
+                                    <a href={project.demo} target="_blank" rel="noopener noreferrer">
+                                      <ExternalLink className="mr-2 h-4 w-4" />
+                                      Live Demo
+                                    </a>
+                                  </Button>
+                                )}
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <div className="text-center py-16">
-                    <h3 className="text-xl font-medium mb-2">No projects yet</h3>
-                    <p className="text-muted-foreground">
-                      Projects for this domain will be added soon.
-                    </p>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <div className="mb-8">
-                <h2 className="text-2xl font-semibold mb-8 text-tech-blue">Project Domains</h2>
-                <ProjectDomains 
-                  domains={domains}
-                  activeDomainId={selectedDomain} 
-                  onSelectDomain={setSelectedDomain} 
-                />
-              </div>
-            )}
+                        </motion.div>
+                      ))}
+                    </div>
+                  ) : (
+                    <motion.div 
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.3, delay: 0.2 }}
+                      className="text-center py-16"
+                    >
+                      <h3 className="text-xl font-medium mb-2">No projects yet</h3>
+                      <p className="text-muted-foreground">
+                        Projects for this domain will be added soon.
+                      </p>
+                    </motion.div>
+                  )}
+                </motion.div>
+              ) : (
+                <motion.div 
+                  key="domains-view"
+                  variants={fadeVariants}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  transition={{ duration: 0.4, ease: "easeInOut" }}
+                  className="mb-8"
+                >
+                  <h2 className="text-2xl font-semibold mb-8 text-tech-blue">Project Domains</h2>
+                  <ProjectDomains 
+                    domains={domains}
+                    activeDomainId={selectedDomain} 
+                    onSelectDomain={setSelectedDomain} 
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </main>
       </PageTransition>
