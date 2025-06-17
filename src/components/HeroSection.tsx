@@ -28,7 +28,7 @@ export function HeroSection() {
             </h1>
             <div className="mb-6 py-px">
               <p className="font-medium text-muted-foreground md:text-xl text-sm">
-                Computer Science & Engineering Student
+                Computer Science & Engineering Graduate
               </p>
             </div>
             <p className="text-muted-foreground max-w-lg mb-8 text-base">
