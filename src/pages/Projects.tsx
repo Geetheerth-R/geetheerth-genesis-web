@@ -59,10 +59,10 @@ const projects = [{
   featured: true,
   domains: ["iot", "ai"]
 }, {
-  title: "Wind tunnel",
+  title: "Wind Tunnel",
   description: "A device that will be used to check the aerodynamics of the air crafts to test it before the actual implementation.",
   tech: ["Testing", "Aerodynamics", "Prototype"],
-  image: "/lovable-uploads/aero.png",
+  image: "https://images.unsplash.com/photo-1439337153520-7082a56a81f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=4000&q=80",
   github: "https://github.com",
   demo: "https://demo.com",
   featured: true,
@@ -70,9 +70,9 @@ const projects = [{
 }];
 
 const fadeVariants = {
-  initial: { opacity: 0, y: 20 },
+  initial: { opacity: 0, y: 30 },
   animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -20 }
+  exit: { opacity: 0, y: -30 }
 };
 
 const Projects = () => {
@@ -104,12 +104,12 @@ const Projects = () => {
                   initial="initial"
                   animate="animate"
                   exit="exit"
-                  transition={{ duration: 0.4, ease: "easeInOut" }}
+                  transition={{ duration: 0.6, ease: "easeInOut" }}
                   className="mb-8"
                 >
                   <Button 
                     variant="ghost" 
-                    className="mb-4 flex items-center gap-2" 
+                    className="mb-4 flex items-center gap-2 transition-all duration-300 hover:scale-105" 
                     onClick={() => setSelectedDomain(null)}
                   >
                     <ChevronLeft size={16} />
@@ -125,17 +125,17 @@ const Projects = () => {
                       {filteredProjects.map((project, index) => (
                         <motion.div 
                           key={index} 
-                          initial={{ opacity: 0, y: 30 }}
+                          initial={{ opacity: 0, y: 40 }}
                           animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.5, delay: index * 0.1 }}
-                          className="bg-dark-100 rounded-xl overflow-hidden shadow-lg"
+                          transition={{ duration: 0.6, delay: index * 0.15, ease: "easeOut" }}
+                          className="bg-dark-100 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02]"
                         >
                           <div className="grid md:grid-cols-2 gap-0">
                             <div className="h-64 md:h-auto overflow-hidden">
                               <img 
                                 src={project.image} 
                                 alt={project.title} 
-                                className="w-full h-full hover:scale-110 transition-transform duration-300 object-cover" 
+                                className="w-full h-full hover:scale-110 transition-transform duration-700 object-cover" 
                                 style={{ aspectRatio: '16/10', objectFit: 'cover' }}
                               />
                             </div>
@@ -146,7 +146,7 @@ const Projects = () => {
                               <div className="mb-4">
                                 <div className="flex flex-wrap gap-2">
                                   {project.tech.map((tech, techIndex) => (
-                                    <span key={techIndex} className="px-3 py-1 bg-dark-200 text-xs rounded-full">
+                                    <span key={techIndex} className="px-3 py-1 bg-dark-200 text-xs rounded-full transition-all duration-300 hover:bg-tech-blue/20">
                                       {tech}
                                     </span>
                                   ))}
@@ -154,14 +154,14 @@ const Projects = () => {
                               </div>
                               
                               <div className="flex gap-3">
-                                <Button asChild variant="outline" size="sm" className="rounded-lg">
+                                <Button asChild variant="outline" size="sm" className="rounded-lg transition-all duration-300 hover:scale-105">
                                   <a href={project.github} target="_blank" rel="noopener noreferrer">
                                     <Github className="mr-2 h-4 w-4" />
                                     Code
                                   </a>
                                 </Button>
                                 {project.demo && (
-                                  <Button asChild size="sm" className="rounded-lg">
+                                  <Button asChild size="sm" className="rounded-lg transition-all duration-300 hover:scale-105">
                                     <a href={project.demo} target="_blank" rel="noopener noreferrer">
                                       <ExternalLink className="mr-2 h-4 w-4" />
                                       Live Demo
@@ -178,7 +178,7 @@ const Projects = () => {
                     <motion.div 
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
-                      transition={{ duration: 0.3, delay: 0.2 }}
+                      transition={{ duration: 0.4, delay: 0.3 }}
                       className="text-center py-16"
                     >
                       <h3 className="text-xl font-medium mb-2">No projects yet</h3>
@@ -195,7 +195,7 @@ const Projects = () => {
                   initial="initial"
                   animate="animate"
                   exit="exit"
-                  transition={{ duration: 0.4, ease: "easeInOut" }}
+                  transition={{ duration: 0.6, ease: "easeInOut" }}
                   className="mb-8"
                 >
                   <h2 className="text-2xl font-semibold mb-8 text-tech-blue">Project Domains</h2>
