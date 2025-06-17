@@ -62,7 +62,7 @@ const projects = [{
   title: "Wind Tunnel",
   description: "A device that will be used to check the aerodynamics of the air crafts to test it before the actual implementation.",
   tech: ["Testing", "Aerodynamics", "Prototype"],
-  image: "/lovable-uploads/wind-tunnel.png",
+  image: "/lovable-uploads/4948655f-5031-44b2-995f-3c0ebf26010f.png",
   github: "https://github.com",
   demo: "https://demo.com",
   featured: true,

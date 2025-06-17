@@ -183,26 +183,41 @@ export function Header() {
               <Button 
                 variant="outline" 
                 size="icon" 
-                className={`rounded-lg transition-all duration-500 transform hover:scale-105 border-2 ${
+                className={`rounded-xl transition-all duration-500 transform hover:scale-105 border-2 relative overflow-hidden group ${
                   theme === "dark" 
-                    ? "hover:bg-tech-blue/20 hover:border-tech-blue/50 backdrop-blur-sm" 
-                    : "hover:bg-tech-blue/10 hover:border-tech-blue/30 backdrop-blur-sm"
+                    ? "hover:bg-tech-blue/20 hover:border-tech-blue/50 backdrop-blur-sm bg-dark-200/80" 
+                    : "hover:bg-tech-blue/10 hover:border-tech-blue/30 backdrop-blur-sm bg-white/80"
+                } ${
+                  isMenuOpen 
+                    ? "bg-gradient-to-br from-tech-blue/30 to-tech-purple/20 border-tech-blue/60 shadow-lg shadow-tech-blue/20" 
+                    : ""
                 }`}
               >
-                <div className="relative">
+                {/* Glossy overlay effect */}
+                <div className={`absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 ${
+                  isMenuOpen ? "opacity-100" : ""
+                }`} />
+                
+                {/* Shimmer effect */}
+                <div className={`absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ${
+                  isMenuOpen ? "translate-x-full" : ""
+                }`} />
+                
+                <div className="relative z-10">
                   <Menu 
                     size={20} 
-                    className={`transition-all duration-500 transform ${
-                      isMenuOpen ? 'rotate-90 opacity-0' : 'rotate-0 opacity-100'
+                    className={`transition-all duration-700 transform ${
+                      isMenuOpen ? 'rotate-180 opacity-0 scale-75' : 'rotate-0 opacity-100 scale-100'
                     }`}
                   />
                   <X 
                     size={20} 
-                    className={`absolute inset-0 transition-all duration-500 transform ${
-                      isMenuOpen ? 'rotate-0 opacity-100' : '-rotate-90 opacity-0'
+                    className={`absolute inset-0 transition-all duration-700 transform ${
+                      isMenuOpen ? 'rotate-0 opacity-100 scale-100' : 'rotate-180 opacity-0 scale-75'
                     }`}
                   />
                 </div>
+                
                 <span className="sr-only">Toggle menu</span>
               </Button>
             </SheetTrigger>
