@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ThemeSwitcher } from "./ThemeSwitcher";
@@ -223,40 +222,62 @@ export function Header() {
             </SheetTrigger>
             <SheetContent 
               side="right" 
-              className={`w-[280px] sm:w-[320px] backdrop-blur-2xl border-l-2 ${
+              className={`w-[280px] sm:w-[320px] backdrop-blur-2xl border-l-2 relative overflow-hidden ${
                 theme === "dark" 
                   ? "bg-dark-300/95 border-tech-blue/20" 
                   : "bg-white/95 border-tech-blue/10"
               } transition-all duration-700 ease-out`}
             >
+              {/* Premium background effects */}
               <div className="absolute inset-0 bg-gradient-to-br from-tech-blue/5 via-transparent to-tech-purple/5 pointer-events-none"></div>
+              <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-tech-blue/10 to-transparent opacity-60 pointer-events-none"></div>
+              <div className="absolute -top-10 -right-10 w-40 h-40 bg-tech-purple/20 rounded-full blur-3xl opacity-30 pointer-events-none animate-pulse"></div>
+              <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-tech-cyan/20 rounded-full blur-2xl opacity-40 pointer-events-none"></div>
+              
+              {/* Animated border */}
+              <div className="absolute inset-0 border border-gradient-to-r from-tech-blue/30 via-tech-purple/30 to-tech-cyan/30 rounded-lg pointer-events-none"></div>
+              
               <nav className="flex flex-col gap-3 mt-8 relative z-10">
                 {navItems.map((item, index) => (
                   <Link 
                     key={item.path} 
                     to={item.path} 
                     onClick={() => setIsMenuOpen(false)}
-                    className={`px-4 py-3 rounded-xl transition-all duration-500 relative group overflow-hidden transform hover:scale-105 ${
+                    className={`px-4 py-3 rounded-xl transition-all duration-500 relative group overflow-hidden transform hover:scale-105 backdrop-blur-sm ${
                       activePath === item.path 
-                        ? `${theme === "dark" ? "bg-tech-blue/20" : "bg-tech-blue/10"} text-primary font-medium shadow-lg` 
-                        : "hover:text-primary hover:bg-secondary/50 hover:shadow-md"
+                        ? `${theme === "dark" ? "bg-gradient-to-r from-tech-blue/20 to-tech-purple/15" : "bg-gradient-to-r from-tech-blue/10 to-tech-purple/8"} text-primary font-medium shadow-lg border border-tech-blue/20` 
+                        : "hover:text-primary hover:bg-gradient-to-r hover:from-secondary/50 hover:to-tech-blue/10 hover:shadow-md hover:border hover:border-tech-blue/10"
                     }`}
                     style={{ 
                       animationDelay: `${index * 100}ms`,
                       animation: `fade-in-up 0.6s ease-out forwards`
                     }}
                   >
-                    <div className="absolute inset-0 bg-gradient-to-r from-tech-blue/10 to-tech-purple/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    {/* Glossy overlay for menu items */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
+                    
+                    {/* Shimmer effect for menu items */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 rounded-xl"></div>
+                    
+                    {/* Subtle border glow */}
+                    <div className={`absolute inset-0 rounded-xl border opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
+                      theme === "dark" ? "border-tech-blue/30" : "border-tech-blue/20"
+                    }`}></div>
+                    
                     <span className="relative z-10">{item.name}</span>
                   </Link>
                 ))}
+                
                 <Button 
                   asChild 
-                  className="mt-6 rounded-xl flex items-center gap-2 bg-gradient-to-r from-tech-blue to-tech-purple hover:from-tech-blue/90 hover:to-tech-purple/90 transition-all duration-500 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                  className="mt-6 rounded-xl flex items-center gap-2 bg-gradient-to-r from-tech-blue to-tech-purple hover:from-tech-blue/90 hover:to-tech-purple/90 transition-all duration-500 transform hover:scale-105 shadow-lg hover:shadow-xl relative overflow-hidden group"
                 >
                   <a href="/lovable-uploads/f6a5e962-f7a3-4685-9f92-5df2980928cd.png" download="Geetheerth_R_Resume.png">
-                    <Download size={16} />
-                    Resume
+                    {/* Button glossy effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                    <Download size={16} className="relative z-10" />
+                    <span className="relative z-10">Resume</span>
                   </a>
                 </Button>
               </nav>
