@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Lightbulb, Star, Share2, MessageSquare } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 
 const Contact = () => {
@@ -17,11 +17,26 @@ const Contact = () => {
     subject: "",
     message: ""
   });
+  const [featureRequest, setFeatureRequest] = useState({
+    name: "",
+    email: "",
+    feature: "",
+    description: ""
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmittingFeature, setIsSubmittingFeature] = useState(false);
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleFeatureChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFeatureRequest(prev => ({
       ...prev,
       [name]: value
     }));
@@ -63,6 +78,80 @@ const Contact = () => {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleFeatureSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmittingFeature(true);
+
+    try {
+      // Call the Supabase edge function for feature requests
+      const { error } = await supabase.functions.invoke("send-contact-email", {
+        body: {
+          name: featureRequest.name,
+          email: featureRequest.email,
+          subject: `Feature Request: ${featureRequest.feature}`,
+          message: `Feature Request: ${featureRequest.feature}\n\nDescription: ${featureRequest.description}`
+        }
+      });
+
+      if (error) {
+        throw new Error(error.message);
+      }
+
+      toast({
+        title: "Feature request sent!",
+        description: "Thank you for your suggestion. I'll consider it for future updates!"
+      });
+      
+      // Reset form
+      setFeatureRequest({
+        name: "",
+        email: "",
+        feature: "",
+        description: ""
+      });
+    } catch (error) {
+      console.error("Error sending feature request:", error);
+      toast({
+        title: "Error",
+        description: "Failed to send your feature request. Please try again later.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmittingFeature(false);
+    }
+  };
+
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'Geetheerth R - Portfolio',
+          text: 'Check out this amazing portfolio!',
+          url: window.location.origin,
+        });
+        toast({
+          title: "Thanks for sharing!",
+          description: "Your support means a lot!"
+        });
+      } catch (error) {
+        console.log('Error sharing:', error);
+      }
+    } else {
+      // Fallback to copying URL
+      navigator.clipboard.writeText(window.location.origin);
+      toast({
+        title: "Link copied!",
+        description: "Portfolio URL copied to clipboard"
+      });
+    }
+  };
+
+  const handleRecommend = () => {
+    const message = `Hey! I found this amazing portfolio by Geetheerth R. You should definitely check it out: ${window.location.origin}`;
+    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
   };
   
   return <div className="min-h-screen flex flex-col">
@@ -127,7 +216,7 @@ const Contact = () => {
               </div>
               
               <div className="mt-8 bg-dark-100 rounded-xl p-6 shadow-lg">
-                <h2 className="text-xl font-semibold mb-4 text-tech-purple"> Working Hours</h2>
+                <h2 className="text-xl font-semibold mb-4 text-tech-purple">Working Hours</h2>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
                     <span>Monday - Friday</span>
@@ -141,6 +230,31 @@ const Contact = () => {
                     <span>Sunday</span>
                     <span className="text-tech-red">Closed</span>
                   </div>
+                </div>
+              </div>
+
+              {/* Share & Recommend Section */}
+              <div className="mt-8 bg-dark-100 rounded-xl p-6 shadow-lg">
+                <h2 className="text-xl font-semibold mb-4 text-tech-cyan">Share My Portfolio</h2>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Love my work? Help others discover it too!
+                </p>
+                <div className="space-y-3">
+                  <Button 
+                    onClick={handleShare}
+                    className="w-full bg-gradient-to-r from-tech-blue to-tech-purple hover:opacity-90"
+                  >
+                    <Share2 className="mr-2 h-4 w-4" />
+                    Share Portfolio
+                  </Button>
+                  <Button 
+                    onClick={handleRecommend}
+                    variant="outline"
+                    className="w-full border-tech-green text-tech-green hover:bg-tech-green/10"
+                  >
+                    <MessageSquare className="mr-2 h-4 w-4" />
+                    Recommend via WhatsApp
+                  </Button>
                 </div>
               </div>
             </div>
@@ -196,6 +310,105 @@ const Contact = () => {
                   </div>
                 </form>
               </div>
+
+              {/* Feature Request Section */}
+              <div className="mt-8 bg-dark-100 rounded-xl p-6 shadow-lg">
+                <div className="flex items-center mb-6">
+                  <Lightbulb className="w-6 h-6 mr-3 text-tech-cyan" />
+                  <h2 className="text-xl font-semibold text-tech-cyan">Request a Feature</h2>
+                </div>
+                <p className="text-sm text-muted-foreground mb-6">
+                  Have an idea to make my portfolio better? I'd love to hear your suggestions!
+                </p>
+                
+                <form onSubmit={handleFeatureSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                      <label htmlFor="feature-name" className="block mb-2 text-sm font-medium">
+                        Your Name
+                      </label>
+                      <Input 
+                        id="feature-name" 
+                        name="name" 
+                        placeholder="Enter your name" 
+                        value={featureRequest.name} 
+                        onChange={handleFeatureChange} 
+                        required 
+                        className="bg-dark-200 border-dark-300 focus:border-tech-cyan focus:ring focus:ring-tech-cyan/50" 
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="feature-email" className="block mb-2 text-sm font-medium">
+                        Your Email
+                      </label>
+                      <Input 
+                        id="feature-email" 
+                        name="email" 
+                        type="email" 
+                        placeholder="Enter your email" 
+                        value={featureRequest.email} 
+                        onChange={handleFeatureChange} 
+                        required 
+                        className="bg-dark-200 border-dark-300 focus:border-tech-cyan focus:ring focus:ring-tech-cyan/50" 
+                      />
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="feature-title" className="block mb-2 text-sm font-medium">
+                      Feature Title
+                    </label>
+                    <Input 
+                      id="feature-title" 
+                      name="feature" 
+                      placeholder="e.g., Dark/Light Mode Toggle, Interactive Resume..." 
+                      value={featureRequest.feature} 
+                      onChange={handleFeatureChange} 
+                      required 
+                      className="bg-dark-200 border-dark-300 focus:border-tech-cyan focus:ring focus:ring-tech-cyan/50" 
+                    />
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="feature-description" className="block mb-2 text-sm font-medium">
+                      Feature Description
+                    </label>
+                    <Textarea 
+                      id="feature-description" 
+                      name="description" 
+                      rows={4} 
+                      placeholder="Describe your feature idea in detail..." 
+                      value={featureRequest.description} 
+                      onChange={handleFeatureChange} 
+                      required 
+                      className="bg-dark-200 border-dark-300 focus:border-tech-cyan focus:ring focus:ring-tech-cyan/50" 
+                    />
+                  </div>
+                  
+                  <div>
+                    <Button 
+                      type="submit" 
+                      disabled={isSubmittingFeature} 
+                      className="w-full rounded-xl bg-gradient-to-r from-tech-cyan to-tech-blue hover:opacity-90"
+                    >
+                      {isSubmittingFeature ? (
+                        <div className="flex items-center">
+                          <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          </svg>
+                          Submitting...
+                        </div>
+                      ) : (
+                        <div className="flex items-center">
+                          <Lightbulb className="mr-2 h-5 w-5" />
+                          Submit Feature Request
+                        </div>
+                      )}
+                    </Button>
+                  </div>
+                </form>
+              </div>
               
               {/* FAQ */}
               <div className="mt-8 bg-dark-100 rounded-xl p-6 shadow-lg">
@@ -217,6 +430,11 @@ const Contact = () => {
                   <div>
                     <h3 className="font-medium text-tech-red">How quickly do you respond to the mail?</h3>
                     <p className="text-sm text-muted-foreground mt-1">I typically respond to all messages within 24-48 hours.</p>
+                  </div>
+
+                  <div>
+                    <h3 className="font-medium text-tech-cyan">Do you implement user-suggested features?</h3>
+                    <p className="text-sm text-muted-foreground mt-1">Absolutely! I love incorporating user feedback and suggestions to continuously improve the portfolio experience.</p>
                   </div>
                 </div>
               </div>
