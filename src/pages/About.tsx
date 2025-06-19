@@ -53,8 +53,15 @@ const About = () => {
                 <h2 className="text-2xl font-semibold mb-4 text-tech-purple">Education</h2>
                 <div className="mb-4 border-l-2 border-tech-purple pl-4">
                   <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-8 bg-gray-200 rounded flex items-center justify-center">
-                      <span className="text-xs font-bold">SIST</span>
+                    <div className="w-8 h-8 bg-gray-200 rounded flex items-center justify-center overflow-hidden">
+                      <img 
+                        src="/placeholder.svg" 
+                        alt="SIST Logo" 
+                        className="w-full h-full object-contain"
+                        loading="eager"
+                        fetchPriority="high"
+                        decoding="async"
+                      />
                     </div>
                     <h3 className="text-lg font-medium">Bachelor of Engineering in Computer Science & Engineering</h3>
                   </div>
@@ -63,8 +70,15 @@ const About = () => {
                 </div>
                 <div className="mb-4 border-l-2 border-tech-blue pl-4">
                   <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-8 bg-gray-200 rounded flex items-center justify-center">
-                      <span className="text-xs font-bold">RS</span>
+                    <div className="w-8 h-8 bg-gray-200 rounded flex items-center justify-center overflow-hidden">
+                      <img 
+                        src="/placeholder.svg" 
+                        alt="Rockford School Logo" 
+                        className="w-full h-full object-contain"
+                        loading="eager"
+                        fetchPriority="high"
+                        decoding="async"
+                      />
                     </div>
                     <h3 className="text-lg font-medium">Higher Secondary Education</h3>
                   </div>
@@ -73,8 +87,15 @@ const About = () => {
                 </div>
                 <div className="border-l-2 border-tech-blue pl-4">
                   <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-8 bg-gray-200 rounded flex items-center justify-center">
-                      <span className="text-xs font-bold">TS</span>
+                    <div className="w-8 h-8 bg-gray-200 rounded flex items-center justify-center overflow-hidden">
+                      <img 
+                        src="/placeholder.svg" 
+                        alt="The Titan School Logo" 
+                        className="w-full h-full object-contain"
+                        loading="eager"
+                        fetchPriority="high"
+                        decoding="async"
+                      />
                     </div>
                     <h3 className="text-lg font-medium">Secondary Education/High School</h3>
                   </div>

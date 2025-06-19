@@ -81,6 +81,7 @@ const Experience = () => {
                               alt={`${exp.company} logo`}
                               className="w-6 h-6 object-contain rounded"
                               loading="eager"
+                              fetchPriority="high"
                               decoding="async"
                             />
                           )}
@@ -157,8 +158,15 @@ const Experience = () => {
                 <div className="space-y-4">
                   <div className="border-l-2 border-tech-cyan pl-4">
                     <div className="flex items-center gap-3 mb-2">
-                      <div className="w-6 h-6 bg-gray-200 rounded flex items-center justify-center">
-                        <span className="text-xs font-bold">SIST</span>
+                      <div className="w-6 h-6 bg-gray-200 rounded flex items-center justify-center overflow-hidden">
+                        <img 
+                          src="/placeholder.svg" 
+                          alt="SIST Logo" 
+                          className="w-full h-full object-contain"
+                          loading="eager"
+                          fetchPriority="high"
+                          decoding="async"
+                        />
                       </div>
                       <h3 className="font-medium">B.E in Computer Science & Engineering</h3>
                     </div>
@@ -169,8 +177,15 @@ const Experience = () => {
                   
                   <div className="border-l-2 border-tech-cyan pl-4">
                     <div className="flex items-center gap-3 mb-2">
-                      <div className="w-6 h-6 bg-gray-200 rounded flex items-center justify-center">
-                        <span className="text-xs font-bold">RS</span>
+                      <div className="w-6 h-6 bg-gray-200 rounded flex items-center justify-center overflow-hidden">
+                        <img 
+                          src="/placeholder.svg" 
+                          alt="Rockford School Logo" 
+                          className="w-full h-full object-contain"
+                          loading="eager"
+                          fetchPriority="high"
+                          decoding="async"
+                        />
                       </div>
                       <h3 className="font-medium">Higher Secondary Education</h3>
                     </div>
