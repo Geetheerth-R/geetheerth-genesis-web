@@ -32,7 +32,7 @@ const About = () => {
                   <ul className="space-y-2 text-sm text-muted-foreground">
                     <li>📍 Chennai, India</li>
                     <li>📧 geetheerth@gmail.com</li>
-                    <li>🌐 github.com/geetheerth</li>
+                    <li>🌐 github.com/geetheerth-r-d</li>
                   </ul>
                 </div>
               </div>
@@ -55,8 +55,7 @@ const About = () => {
                   <div className="flex items-center gap-3 mb-2">
                     <div className="w-8 h-8 bg-gray-200 rounded flex items-center justify-center overflow-hidden">
                       <img 
-                        src="/placeholder.svg" 
-                        alt="SIST Logo" 
+                        src="/lovable-uploads/9ec516fd-ca37-4107-8caf-b784f177ab6e.jpg"  
                         className="w-full h-full object-contain"
                         loading="eager"
                         fetchPriority="high"
