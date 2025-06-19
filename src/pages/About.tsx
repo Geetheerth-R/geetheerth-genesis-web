@@ -71,7 +71,7 @@ const About = () => {
                   <div className="flex items-center gap-3 mb-2">
                     <div className="w-8 h-8 bg-gray-200 rounded flex items-center justify-center overflow-hidden">
                       <img 
-                        src="/placeholder.svg" 
+                        src="/lovable-uploads/rockford.png" 
                         alt="Rockford School Logo" 
                         className="w-full h-full object-contain"
                         loading="eager"
