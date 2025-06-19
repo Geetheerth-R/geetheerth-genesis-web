@@ -55,7 +55,7 @@ const About = () => {
                   <div className="flex items-center gap-3 mb-2">
                     <div className="w-8 h-8 bg-gray-200 rounded flex items-center justify-center overflow-hidden">
                       <img 
-                        src="/lovable-uploads/9ec516fd-ca37-4107-8caf-b784f177ab6e.jpg"  
+                        src="/lovable-uploads/sist.png"  
                         className="w-full h-full object-contain"
                         loading="eager"
                         fetchPriority="high"
