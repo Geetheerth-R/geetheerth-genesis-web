@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -8,6 +7,7 @@ import { PageTransition } from "@/components/PageTransition";
 import { Chatbot } from "@/components/Chatbot";
 import { ProjectDomains } from "@/components/ProjectDomains";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 // Project domains
 const domains = [
@@ -63,8 +63,7 @@ const projects = [{
   description: "A device that will be used to check the aerodynamics of the air crafts to test it before the actual implementation.",
   tech: ["Testing", "Aerodynamics", "Prototype"],
   image: "/lovable-uploads/4948655f-5031-44b2-995f-3c0ebf26010f.png",
-  github: "https://github.com",
-  demo: "https://demo.com",
+  knowMore: "/wind-tunnel-details",
   featured: true,
   domains: ["aero"]
 }];
@@ -77,6 +76,7 @@ const fadeVariants = {
 
 const Projects = () => {
   const [selectedDomain, setSelectedDomain] = useState<string | null>(null);
+  const navigate = useNavigate();
   
   // Filter projects based on selected domain
   const filteredProjects = selectedDomain 
@@ -154,18 +154,30 @@ const Projects = () => {
                               </div>
                               
                               <div className="flex gap-3">
-                                <Button asChild variant="outline" size="sm" className="rounded-lg transition-all duration-300 hover:scale-105">
-                                  <a href={project.github} target="_blank" rel="noopener noreferrer">
-                                    <Github className="mr-2 h-4 w-4" />
-                                    Code
-                                  </a>
-                                </Button>
+                                {project.title !== "Wind Tunnel" && project.github && (
+                                  <Button asChild variant="outline" size="sm" className="rounded-lg transition-all duration-300 hover:scale-105">
+                                    <a href={project.github} target="_blank" rel="noopener noreferrer">
+                                      <Github className="mr-2 h-4 w-4" />
+                                      Code
+                                    </a>
+                                  </Button>
+                                )}
                                 {project.demo && (
                                   <Button asChild size="sm" className="rounded-lg transition-all duration-300 hover:scale-105">
                                     <a href={project.demo} target="_blank" rel="noopener noreferrer">
                                       <ExternalLink className="mr-2 h-4 w-4" />
                                       Live Demo
                                     </a>
+                                  </Button>
+                                )}
+                                {project.knowMore && (
+                                  <Button 
+                                    size="sm" 
+                                    className="rounded-lg transition-all duration-300 hover:scale-105"
+                                    onClick={() => navigate(project.knowMore)}
+                                  >
+                                    <ExternalLink className="mr-2 h-4 w-4" />
+                                    Know More
                                   </Button>
                                 )}
                               </div>

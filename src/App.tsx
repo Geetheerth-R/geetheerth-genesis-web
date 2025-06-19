@@ -14,6 +14,7 @@ import Projects from "./pages/Projects";
 import Experience from "./pages/Experience";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import WindTunnelDetails from "./pages/WindTunnelDetails";
 import { ChatProvider } from "./context/ChatContext";
 
 const queryClient = new QueryClient();
@@ -31,6 +32,7 @@ const AnimatedRoutes = () => {
         <Route path="/projects" element={<Projects />} />
         <Route path="/experience" element={<Experience />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/wind-tunnel-details" element={<WindTunnelDetails />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </AnimatePresence>
