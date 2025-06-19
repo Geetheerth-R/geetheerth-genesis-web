@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Github, ExternalLink, ChevronLeft } from "lucide-react";
+import { Github, ExternalLink, ChevronLeft, Info } from "lucide-react";
 import { PageTransition } from "@/components/PageTransition";
 import { Chatbot } from "@/components/Chatbot";
 import { ProjectDomains } from "@/components/ProjectDomains";
@@ -63,8 +63,7 @@ const projects = [{
   description: "A device that will be used to check the aerodynamics of the air crafts to test it before the actual implementation.",
   tech: ["Testing", "Aerodynamics", "Prototype"],
   image: "/lovable-uploads/4948655f-5031-44b2-995f-3c0ebf26010f.png",
-  github: "https://github.com",
-  demo: "https://demo.com",
+  knowMore: "/wind-tunnel-details",
   featured: true,
   domains: ["aero"]
 }];
@@ -154,17 +153,27 @@ const Projects = () => {
                               </div>
                               
                               <div className="flex gap-3">
-                                <Button asChild variant="outline" size="sm" className="rounded-lg transition-all duration-300 hover:scale-105">
-                                  <a href={project.github} target="_blank" rel="noopener noreferrer">
-                                    <Github className="mr-2 h-4 w-4" />
-                                    Code
-                                  </a>
-                                </Button>
+                                {project.title !== "Wind Tunnel" && (
+                                  <Button asChild variant="outline" size="sm" className="rounded-lg transition-all duration-300 hover:scale-105">
+                                    <a href={project.github} target="_blank" rel="noopener noreferrer">
+                                      <Github className="mr-2 h-4 w-4" />
+                                      Code
+                                    </a>
+                                  </Button>
+                                )}
                                 {project.demo && (
                                   <Button asChild size="sm" className="rounded-lg transition-all duration-300 hover:scale-105">
                                     <a href={project.demo} target="_blank" rel="noopener noreferrer">
                                       <ExternalLink className="mr-2 h-4 w-4" />
                                       Live Demo
+                                    </a>
+                                  </Button>
+                                )}
+                                {project.knowMore && (
+                                  <Button asChild size="sm" className="rounded-lg transition-all duration-300 hover:scale-105">
+                                    <a href={project.knowMore}>
+                                      <Info className="mr-2 h-4 w-4" />
+                                      Know More
                                     </a>
                                   </Button>
                                 )}

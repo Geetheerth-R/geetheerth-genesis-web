@@ -79,7 +79,7 @@ const Experience = () => {
                             <img 
                               src={exp.companyLogo} 
                               alt={`${exp.company} logo`}
-                              className="w-6 h-6 object-contain rounded"
+                              className="w-8 h-8 object-contain rounded flex-shrink-0"
                               loading="eager"
                               fetchPriority="high"
                               decoding="async"
@@ -158,9 +158,9 @@ const Experience = () => {
                 <div className="space-y-4">
                   <div className="border-l-2 border-tech-cyan pl-4">
                     <div className="flex items-center gap-3 mb-2">
-                      <div className="w-6 h-6 bg-gray-200 rounded flex items-center justify-center overflow-hidden">
+                      <div className="w-8 h-8 bg-gray-200 rounded flex items-center justify-center overflow-hidden flex-shrink-0">
                         <img 
-                          src="/lovable-uploads/sathyabama.png" 
+                          src="/placeholder.svg" 
                           alt="SIST Logo" 
                           className="w-full h-full object-contain"
                           loading="eager"
@@ -177,9 +177,9 @@ const Experience = () => {
                   
                   <div className="border-l-2 border-tech-cyan pl-4">
                     <div className="flex items-center gap-3 mb-2">
-                      <div className="w-6 h-6 bg-gray-200 rounded flex items-center justify-center overflow-hidden">
+                      <div className="w-8 h-8 bg-gray-200 rounded flex items-center justify-center overflow-hidden flex-shrink-0">
                         <img 
-                          src="/lovable-uploads/rockford.png" 
+                          src="/placeholder.svg" 
                           alt="Rockford School Logo" 
                           className="w-full h-full object-contain"
                           loading="eager"
