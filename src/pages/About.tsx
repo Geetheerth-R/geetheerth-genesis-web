@@ -14,17 +14,14 @@ const About = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="md:col-span-1">
               <div className="bg-card rounded-xl p-6 sticky top-24 shadow-md">
-                <div className="aspect-square rounded-xl mb-4 overflow-hidden bg-muted">
+                <div className="aspect-square rounded-xl mb-4 overflow-hidden bg-gray-100">
                   <img 
                     alt="Geetheerth R" 
                     src="/lovable-uploads/9ec516fd-ca37-4107-8caf-b784f177ab6e.jpg" 
                     className="w-full h-full object-cover"
                     loading="eager"
                     fetchPriority="high"
-                    onLoad={(e) => {
-                      e.currentTarget.style.opacity = '1';
-                    }}
-                    style={{ opacity: 0, transition: 'opacity 0.3s ease-in-out' }}
+                    decoding="async"
                   />
                 </div>
                 <h2 className="text-xl font-bold mb-2">Geetheerth R</h2>
@@ -55,17 +52,32 @@ const About = () => {
               <div className="bg-card rounded-xl p-6 shadow-md">
                 <h2 className="text-2xl font-semibold mb-4 text-tech-purple">Education</h2>
                 <div className="mb-4 border-l-2 border-tech-purple pl-4">
-                  <h3 className="text-lg font-medium">Bachelor of Engineering in Computer Science & Engineering</h3>
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 bg-gray-200 rounded flex items-center justify-center">
+                      <span className="text-xs font-bold">SIST</span>
+                    </div>
+                    <h3 className="text-lg font-medium">Bachelor of Engineering in Computer Science & Engineering</h3>
+                  </div>
                   <p className="text-muted-foreground">Sathyabama Institute of Science and Technology • 2021 - 2025</p>
                   <p className="text-sm mt-2">Core subjects include Data Structures, Algorithms, Database Systems, Computer Networks, and Software Engineering.</p>
                 </div>
                 <div className="mb-4 border-l-2 border-tech-blue pl-4">
-                  <h3 className="text-lg font-medium">Higher Secondary Education</h3>
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 bg-gray-200 rounded flex items-center justify-center">
+                      <span className="text-xs font-bold">RS</span>
+                    </div>
+                    <h3 className="text-lg font-medium">Higher Secondary Education</h3>
+                  </div>
                   <p className="text-muted-foreground">Rockford School • 2019 - 2021</p>
                   <p className="text-sm mt-2">Mathematics, Physics, Chemistry, Computer Science with an excellent academic record.</p>
                 </div>
                 <div className="border-l-2 border-tech-blue pl-4">
-                  <h3 className="text-lg font-medium">Secondary Education/High School</h3>
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 bg-gray-200 rounded flex items-center justify-center">
+                      <span className="text-xs font-bold">TS</span>
+                    </div>
+                    <h3 className="text-lg font-medium">Secondary Education/High School</h3>
+                  </div>
                   <p className="text-muted-foreground">The Titan School • 2006 - 2019</p>
                   <p className="text-sm mt-2">Mathematics, Physics, Chemistry, Computer Science, Social Science, Tamil and English.</p>
                 </div>

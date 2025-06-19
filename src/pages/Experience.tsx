@@ -75,15 +75,16 @@ const Experience = () => {
                     <div className="bg-dark-100 p-5 rounded-lg shadow-md">
                       <div className="flex flex-wrap justify-between items-start mb-2">
                         <div className="flex items-center gap-3">
-                          <h3 className="text-lg font-semibold">{exp.title}</h3>
                           {exp.companyLogo && (
                             <img 
                               src={exp.companyLogo} 
                               alt={`${exp.company} logo`}
                               className="w-6 h-6 object-contain rounded"
-                              loading="lazy"
+                              loading="eager"
+                              decoding="async"
                             />
                           )}
+                          <h3 className="text-lg font-semibold">{exp.title}</h3>
                         </div>
                         <Badge variant="outline" className="text-xs">
                           <Calendar size={12} className="mr-1" />
@@ -155,14 +156,24 @@ const Experience = () => {
                 
                 <div className="space-y-4">
                   <div className="border-l-2 border-tech-cyan pl-4">
-                    <h3 className="font-medium">B.E in Computer Science & Engineering</h3>
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-6 h-6 bg-gray-200 rounded flex items-center justify-center">
+                        <span className="text-xs font-bold">SIST</span>
+                      </div>
+                      <h3 className="font-medium">B.E in Computer Science & Engineering</h3>
+                    </div>
                     <p className="text-sm text-tech-blue">Sathyanama Institute of Science and Technology</p>
                     <p className="text-xs text-muted-foreground">2021 - 2025 </p>
                     <p className="text-xs mt-2">CGPA: 7.8/10.0</p>
                   </div>
                   
                   <div className="border-l-2 border-tech-cyan pl-4">
-                    <h3 className="font-medium">Higher Secondary Education</h3>
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-6 h-6 bg-gray-200 rounded flex items-center justify-center">
+                        <span className="text-xs font-bold">RS</span>
+                      </div>
+                      <h3 className="font-medium">Higher Secondary Education</h3>
+                    </div>
                     <p className="text-sm text-tech-blue">Rockford School</p>
                     <p className="text-xs text-muted-foreground">2019 - 2021</p>
                     <p className="text-xs mt-2">Percentage: 74%</p>
