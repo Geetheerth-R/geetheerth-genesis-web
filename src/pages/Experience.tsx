@@ -10,7 +10,7 @@ const experiences = [{
   description: "Learnt about the SAP working and the Supply chain management process.",
   type: "work",
   skills: ["ERP", "Supply Chain Management", "SAP"],
-  companyLogo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Titan_Company_Logo.svg/2560px-Titan_Company_Logo.svg.png"
+  companyLogo: "/lovable-uploads/titanlogo.png"
 }];
 const certifications = [{
   name: "Machine Learning with MATLAB",
