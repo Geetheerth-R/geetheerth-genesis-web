@@ -14,7 +14,7 @@ const About = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="md:col-span-1">
               <div className="bg-card rounded-xl p-6 sticky top-24 shadow-md">
-                <div className="aspect-square rounded-xl mb-4 overflow-hidden">
+                <div className="aspect-square rounded-xl mb-4 overflow-hidden bg-gray-100">
                   <img 
                     alt="Geetheerth R" 
                     src="/lovable-uploads/9ec516fd-ca37-4107-8caf-b784f177ab6e.jpg" 
@@ -53,10 +53,9 @@ const About = () => {
                 <h2 className="text-2xl font-semibold mb-4 text-tech-purple">Education</h2>
                 <div className="mb-4 border-l-2 border-tech-purple pl-4">
                   <div className="flex items-center gap-3 mb-2">
-                    <div className="w-10 h-10 bg-gray-200 rounded flex items-center justify-center overflow-hidden flex-shrink-0">
+                    <div className="w-8 h-8 bg-gray-200 rounded flex items-center justify-center overflow-hidden">
                       <img 
-                        src="/placeholder.svg"
-                        alt="SIST Logo"  
+                        src="/lovable-uploads/sathyabama.png"  
                         className="w-full h-full object-contain"
                         loading="eager"
                         fetchPriority="high"
@@ -70,9 +69,9 @@ const About = () => {
                 </div>
                 <div className="mb-4 border-l-2 border-tech-blue pl-4">
                   <div className="flex items-center gap-3 mb-2">
-                    <div className="w-10 h-10 bg-gray-200 rounded flex items-center justify-center overflow-hidden flex-shrink-0">
+                    <div className="w-8 h-8 bg-gray-200 rounded flex items-center justify-center overflow-hidden">
                       <img 
-                        src="/placeholder.svg" 
+                        src="/lovable-uploads/rockford.png" 
                         alt="Rockford School Logo" 
                         className="w-full h-full object-contain"
                         loading="eager"
@@ -87,9 +86,9 @@ const About = () => {
                 </div>
                 <div className="border-l-2 border-tech-blue pl-4">
                   <div className="flex items-center gap-3 mb-2">
-                    <div className="w-10 h-10 bg-gray-200 rounded flex items-center justify-center overflow-hidden flex-shrink-0">
+                    <div className="w-8 h-8 bg-gray-200 rounded flex items-center justify-center overflow-hidden">
                       <img 
-                        src="/placeholder.svg" 
+                        src="/lovable-uploads/titans.png" 
                         alt="The Titan School Logo" 
                         className="w-full h-full object-contain"
                         loading="eager"
