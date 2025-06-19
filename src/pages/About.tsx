@@ -14,8 +14,18 @@ const About = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="md:col-span-1">
               <div className="bg-card rounded-xl p-6 sticky top-24 shadow-md">
-                <div className="aspect-square rounded-xl bg-gradient-to-br from-tech-blue to-tech-purple mb-4 overflow-hidden">
-                  <img alt="Geetheerth R" src="/lovable-uploads/9ec516fd-ca37-4107-8caf-b784f177ab6e.jpg" className="w-full h-full object-cover" />
+                <div className="aspect-square rounded-xl mb-4 overflow-hidden bg-muted">
+                  <img 
+                    alt="Geetheerth R" 
+                    src="/lovable-uploads/9ec516fd-ca37-4107-8caf-b784f177ab6e.jpg" 
+                    className="w-full h-full object-cover"
+                    loading="eager"
+                    fetchPriority="high"
+                    onLoad={(e) => {
+                      e.currentTarget.style.opacity = '1';
+                    }}
+                    style={{ opacity: 0, transition: 'opacity 0.3s ease-in-out' }}
+                  />
                 </div>
                 <h2 className="text-xl font-bold mb-2">Geetheerth R</h2>
                 <p className="text-muted-foreground text-sm">Computer Science & Engineering Graduate</p>

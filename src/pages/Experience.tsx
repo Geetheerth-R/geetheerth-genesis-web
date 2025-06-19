@@ -2,13 +2,15 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Briefcase, GraduationCap, Award } from "lucide-react";
+
 const experiences = [{
   title: "SAP Intern",
   company: "Titan Company.Ltd",
   period: "September 2024 - October 2024",
   description: "Learnt about the SAP working and the Supply chain management process.",
   type: "work",
-  skills: ["ERP", "Supply Chain Management", "SAP"]
+  skills: ["ERP", "Supply Chain Management", "SAP"],
+  companyLogo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Titan_Company_Logo.svg/2560px-Titan_Company_Logo.svg.png"
 }];
 const certifications = [{
   name: "Machine Learning with MATLAB",
@@ -35,8 +37,10 @@ const achievements = [{
   title: "Best Project of the year - Wind Tunnel",
   description: "Won the best project of he year award for the wind tunnel project which was the illustartion of the aerodynamics checking unit of airecrafts."
 }];
+
 const Experience = () => {
-  return <div className="min-h-screen flex flex-col">
+  return (
+    <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-grow pt-24 pb-16">
         <div className="container mx-auto">
@@ -56,14 +60,31 @@ const Experience = () => {
               </h2>
               
               <div className="space-y-6 relative before:absolute before:inset-0 before:ml-5 before:w-0.5 before:bg-gradient-to-b before:from-tech-blue before:to-tech-purple before:-z-10">
-                {experiences.map((exp, index) => <div key={index} className="relative pl-12">
+                {experiences.map((exp, index) => (
+                  <div key={index} className="relative pl-12">
                     <div className="absolute left-0 top-1 w-10 h-10 rounded-full bg-dark-200 flex items-center justify-center border-2 border-tech-blue">
-                      {exp.type === "work" ? <Briefcase size={16} className="text-tech-blue" /> : exp.type === "research" ? <GraduationCap size={16} className="text-tech-purple" /> : <Award size={16} className="text-tech-red" />}
+                      {exp.type === "work" ? (
+                        <Briefcase size={16} className="text-tech-blue" />
+                      ) : exp.type === "research" ? (
+                        <GraduationCap size={16} className="text-tech-purple" />
+                      ) : (
+                        <Award size={16} className="text-tech-red" />
+                      )}
                     </div>
                     
                     <div className="bg-dark-100 p-5 rounded-lg shadow-md">
                       <div className="flex flex-wrap justify-between items-start mb-2">
-                        <h3 className="text-lg font-semibold">{exp.title}</h3>
+                        <div className="flex items-center gap-3">
+                          <h3 className="text-lg font-semibold">{exp.title}</h3>
+                          {exp.companyLogo && (
+                            <img 
+                              src={exp.companyLogo} 
+                              alt={`${exp.company} logo`}
+                              className="w-6 h-6 object-contain rounded"
+                              loading="lazy"
+                            />
+                          )}
+                        </div>
                         <Badge variant="outline" className="text-xs">
                           <Calendar size={12} className="mr-1" />
                           {exp.period}
@@ -73,12 +94,15 @@ const Experience = () => {
                       <p className="text-muted-foreground text-sm mb-4">{exp.description}</p>
                       
                       <div className="flex flex-wrap gap-2">
-                        {exp.skills.map((skill, skillIndex) => <span key={skillIndex} className="px-3 py-1 bg-dark-200 text-xs rounded-full">
+                        {exp.skills.map((skill, skillIndex) => (
+                          <span key={skillIndex} className="px-3 py-1 bg-dark-200 text-xs rounded-full">
                             {skill}
-                          </span>)}
+                          </span>
+                        ))}
                       </div>
                     </div>
-                  </div>)}
+                  </div>
+                ))}
               </div>
             </div>
 
@@ -92,14 +116,16 @@ const Experience = () => {
                 </h2>
                 
                 <div className="space-y-4">
-                  {certifications.map((cert, index) => <div key={index} className="border-l-2 border-tech-purple pl-4">
+                  {certifications.map((cert, index) => (
+                    <div key={index} className="border-l-2 border-tech-purple pl-4">
                       <h3 className="font-medium">{cert.name}</h3>
                       <p className="text-sm text-muted-foreground">{cert.issuer}</p>
                       <div className="flex justify-between text-xs text-muted-foreground mt-1">
                         <span>{cert.date}</span>
                         <span>ID: {cert.completed}</span>
                       </div>
-                    </div>)}
+                    </div>
+                  ))}
                 </div>
               </div>
               
@@ -111,10 +137,12 @@ const Experience = () => {
                 </h2>
                 
                 <div className="space-y-4">
-                  {achievements.map((achievement, index) => <div key={index} className="bg-dark-200 p-4 rounded-lg">
+                  {achievements.map((achievement, index) => (
+                    <div key={index} className="bg-dark-200 p-4 rounded-lg">
                       <h3 className="font-medium mb-1">{achievement.title}</h3>
                       <p className="text-sm text-muted-foreground">{achievement.description}</p>
-                    </div>)}
+                    </div>
+                  ))}
                 </div>
               </div>
               
@@ -146,6 +174,8 @@ const Experience = () => {
         </div>
       </main>
       <Footer />
-    </div>;
+    </div>
+  );
 };
+
 export default Experience;
