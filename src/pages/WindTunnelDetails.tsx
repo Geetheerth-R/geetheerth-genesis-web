@@ -99,7 +99,7 @@ const WindTunnelDetails = () => {
                     <ul className="space-y-2 text-muted-foreground">
                       <li><strong>Test Section:</strong> 0.5m x 0.5m cross-section</li>
                       <li><strong>Maximum Wind Speed:</strong> 50 m/s</li>
-                      <li><strong>Turbulence Level:</strong> < 0.5%</li>
+                      <li><strong>Turbulence Level:</strong> &lt; 0.5%</li>
                       <li><strong>Reynolds Number Range:</strong> 10⁴ to 10⁶</li>
                     </ul>
                   </div>
