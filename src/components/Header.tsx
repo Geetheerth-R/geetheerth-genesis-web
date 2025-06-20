@@ -3,10 +3,9 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 import { Button } from "@/components/ui/button";
-import { Menu, FileImage, Download, MessageSquare, User } from "lucide-react";
+import { Menu, Download, User } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useTheme } from "./ThemeProvider";
-import { useChatToggle } from "@/context/ChatContext";
 
 const navItems = [
   { name: "Home", path: "/" },
@@ -87,7 +86,6 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [activePath, setActivePath] = useState("/");
   const { theme } = useTheme();
-  const { toggleChat } = useChatToggle();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -175,31 +173,11 @@ export function Header() {
               Resume
             </a>
           </Button>
-          <Button
-            onClick={toggleChat}
-            className={`ml-3 rounded-lg p-2 transition-all duration-300 ${
-              theme === "dark"
-                ? "bg-tech-purple hover:bg-tech-purple/90 text-white"
-                : "bg-tech-purple hover:bg-tech-purple/90 text-white"
-            }`}
-            size="icon"
-          >
-            <MessageSquare size={18} />
-            <span className="sr-only">Open Chat</span>
-          </Button>
         </nav>
 
         {/* Mobile Navigation */}
         <div className="flex items-center gap-2 md:hidden">
           <ThemeSwitcher />
-          <Button
-            onClick={toggleChat}
-            className="mr-2 rounded-lg p-2 bg-tech-purple hover:bg-tech-purple/90 text-white"
-            size="icon"
-          >
-            <MessageSquare size={18} />
-            <span className="sr-only">Open Chat</span>
-          </Button>
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="outline" size="icon" className="rounded-lg">

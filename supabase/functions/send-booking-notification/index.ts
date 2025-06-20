@@ -37,8 +37,19 @@ const handler = async (req: Request): Promise<Response> => {
       notes 
     }: BookingNotificationRequest = await req.json();
 
+    console.log("Received booking notification request:", {
+      user_email,
+      user_name,
+      service_name,
+      service_price,
+      booking_date,
+      booking_time,
+      notes
+    });
+
     // Basic validation
     if (!user_email || !user_name || !service_name || !booking_date || !booking_time) {
+      console.error("Missing required fields:", { user_email, user_name, service_name, booking_date, booking_time });
       return new Response(
         JSON.stringify({ error: "Missing required fields" }),
         {
@@ -48,34 +59,48 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    const formattedDate = new Date(booking_date).toLocaleDateString('en-US', {
+    // Convert USD to INR for display
+    const priceInINR = Math.round(service_price * 83);
+
+    const formattedDate = new Date(booking_date).toLocaleDateString('en-IN', {
       weekday: 'long',
       year: 'numeric',
       month: 'long',
       day: 'numeric'
     });
 
-    const formattedTime = new Date(`${booking_date}T${booking_time}`).toLocaleTimeString('en-US', {
-      hour: 'numeric',
-      minute: '2-digit',
-      hour12: true
-    });
+    let formattedTime;
+    if (service_name === "Technical Consulting") {
+      formattedTime = new Date(`${booking_date}T${booking_time}`).toLocaleTimeString('en-IN', {
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true
+      });
+    } else {
+      // For other services, booking_time is expected delivery date
+      formattedTime = new Date(booking_time).toLocaleDateString('en-IN', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+    }
 
-    // Send notification email to service provider
+    // Send notification email to service provider (you)
     const emailToProvider = await resend.emails.send({
       from: "Service Booking <onboarding@resend.dev>",
       to: ["geetheerth@gmail.com"],
       subject: `New Service Booking: ${service_name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
-          <h2 style="color: #4263eb; border-bottom: 2px solid #4263eb; padding-bottom: 10px;">New Service Booking</h2>
+          <h2 style="color: #4263eb; border-bottom: 2px solid #4263eb; padding-bottom: 10px;">New Service Booking Received</h2>
           
           <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
             <h3 style="color: #495057; margin-top: 0;">Service Details</h3>
             <p><strong>Service:</strong> ${service_name}</p>
-            <p><strong>Price:</strong> $${service_price}</p>
-            <p><strong>Date:</strong> ${formattedDate}</p>
-            <p><strong>Time:</strong> ${formattedTime}</p>
+            <p><strong>Investment:</strong> ₹${priceInINR} (${service_price} USD)</p>
+            <p><strong>${service_name === "Technical Consulting" ? "Consultation Date" : "Project Start Date"}:</strong> ${formattedDate}</p>
+            <p><strong>${service_name === "Technical Consulting" ? "Consultation Time" : "Expected Delivery"}:</strong> ${formattedTime}</p>
           </div>
 
           <div style="background-color: #e3f2fd; padding: 20px; border-radius: 8px; margin: 20px 0;">
@@ -86,7 +111,7 @@ const handler = async (req: Request): Promise<Response> => {
 
           ${notes ? `
           <div style="background-color: #fff3e0; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #f57c00; margin-top: 0;">Additional Notes</h3>
+            <h3 style="color: #f57c00; margin-top: 0;">Project Requirements & Specifications</h3>
             <p style="white-space: pre-wrap;">${notes}</p>
           </div>
           ` : ''}
@@ -95,13 +120,14 @@ const handler = async (req: Request): Promise<Response> => {
             <p style="margin: 0; color: #2e7d32;"><strong>Next Steps:</strong></p>
             <ul style="color: #2e7d32; margin: 10px 0;">
               <li>Contact the client at ${user_email} to confirm the booking</li>
-              <li>Send them any preparation materials or requirements</li>
-              <li>Add the appointment to your calendar</li>
+              <li>Discuss project requirements and deliverables</li>
+              <li>Send project proposal and timeline</li>
+              <li>Schedule the work in your calendar</li>
             </ul>
           </div>
           
           <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; font-size: 12px; color: #777;">
-            <p>This booking was made through your portfolio website.</p>
+            <p>This booking was made through your portfolio website service booking system.</p>
           </div>
         </div>
       `,
@@ -111,50 +137,57 @@ const handler = async (req: Request): Promise<Response> => {
     const emailToClient = await resend.emails.send({
       from: "Geetheerth R <onboarding@resend.dev>",
       to: [user_email],
-      subject: `Booking Confirmation: ${service_name}`,
+      subject: `Service Booking Confirmation: ${service_name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
-          <h2 style="color: #4263eb;">Booking Confirmation</h2>
-          <p>Hello ${user_name},</p>
-          <p>Thank you for booking my services! I'm excited to work with you.</p>
+          <h2 style="color: #4263eb;">Service Booking Confirmation</h2>
+          <p>Dear ${user_name},</p>
+          <p>Thank you for choosing my professional services! I'm excited to work with you on your project.</p>
           
           <div style="background-color: #f5f5f5; padding: 20px; border-left: 4px solid #4263eb; margin: 20px 0;">
             <h3 style="margin-top: 0; color: #4263eb;">Your Booking Details</h3>
             <p><strong>Service:</strong> ${service_name}</p>
-            <p><strong>Price:</strong> $${service_price}</p>
-            <p><strong>Date:</strong> ${formattedDate}</p>
-            <p><strong>Time:</strong> ${formattedTime}</p>
-            ${notes ? `<p><strong>Notes:</strong> ${notes}</p>` : ''}
+            <p><strong>Investment:</strong> ₹${priceInINR}</p>
+            <p><strong>${service_name === "Technical Consulting" ? "Consultation Date" : "Project Start Date"}:</strong> ${formattedDate}</p>
+            <p><strong>${service_name === "Technical Consulting" ? "Consultation Time" : "Expected Delivery"}:</strong> ${formattedTime}</p>
+            ${notes ? `<p><strong>Requirements:</strong> ${notes}</p>` : ''}
           </div>
 
-          <p>I will contact you within 24 hours to confirm the details and discuss the project requirements.</p>
-          
           <div style="background-color: #e8f5e8; padding: 15px; border-radius: 8px; margin: 20px 0;">
             <p style="margin: 0; color: #2e7d32;"><strong>What happens next?</strong></p>
             <ul style="color: #2e7d32;">
-              <li>I'll reach out to you via email to confirm the booking</li>
-              <li>We'll discuss project requirements and timeline</li>
-              <li>I'll provide any necessary preparation materials</li>
+              <li>I'll reach out to you within 24 hours to confirm the booking</li>
+              <li>We'll discuss your project requirements in detail</li>
+              <li>I'll provide a comprehensive project proposal and timeline</li>
+              <li>We'll schedule the work according to your preferred timeline</li>
             </ul>
           </div>
 
-          <p>If you have any questions or need to make changes to your booking, please reply to this email.</p>
+          <p>If you have any questions or need to make changes to your booking, please reply to this email or contact me directly.</p>
           
-          <p>Best regards,<br/>Geetheerth R</p>
+          <p>Looking forward to working with you!</p>
+          
+          <p>Best regards,<br/>
+          <strong>Geetheerth R</strong><br/>
+          Professional Technical Services</p>
           
           <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; font-size: 12px; color: #777;">
-            <p>This is a confirmation email for your service booking.</p>
+            <p>This is an automated confirmation email for your service booking request.</p>
           </div>
         </div>
       `,
     });
 
     console.log("Booking notification emails sent successfully:", { 
-      providerEmail: emailToProvider, 
-      clientEmail: emailToClient 
+      providerEmailId: emailToProvider.data?.id, 
+      clientEmailId: emailToClient.data?.id 
     });
 
-    return new Response(JSON.stringify({ success: true }), {
+    return new Response(JSON.stringify({ 
+      success: true, 
+      providerEmailId: emailToProvider.data?.id,
+      clientEmailId: emailToClient.data?.id
+    }), {
       status: 200,
       headers: {
         "Content-Type": "application/json",
@@ -164,7 +197,7 @@ const handler = async (req: Request): Promise<Response> => {
   } catch (error: any) {
     console.error("Error in booking notification function:", error);
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ error: error.message || "Failed to send booking notification" }),
       {
         status: 500,
         headers: { "Content-Type": "application/json", ...corsHeaders },
