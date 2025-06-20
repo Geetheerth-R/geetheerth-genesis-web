@@ -13,9 +13,12 @@ import Skills from "./pages/Skills";
 import Projects from "./pages/Projects";
 import Experience from "./pages/Experience";
 import Contact from "./pages/Contact";
+import Auth from "./pages/Auth";
+import Services from "./pages/Services";
 import NotFound from "./pages/NotFound";
 import WindTunnelDetails from "./pages/WindTunnelDetails";
 import { ChatProvider } from "./context/ChatContext";
+import { AuthProvider } from "./context/AuthContext";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +35,8 @@ const AnimatedRoutes = () => {
         <Route path="/projects" element={<Projects />} />
         <Route path="/experience" element={<Experience />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/auth" element={<Auth />} />
+        <Route path="/services" element={<Services />} />
         <Route path="/wind-tunnel-details" element={<WindTunnelDetails />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
@@ -42,15 +47,17 @@ const AnimatedRoutes = () => {
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider defaultTheme="dark">
-      <ChatProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <AnimatedRoutes />
-          </BrowserRouter>
-        </TooltipProvider>
-      </ChatProvider>
+      <AuthProvider>
+        <ChatProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Sonner />
+            <BrowserRouter>
+              <AnimatedRoutes />
+            </BrowserRouter>
+          </TooltipProvider>
+        </ChatProvider>
+      </AuthProvider>
     </ThemeProvider>
   </QueryClientProvider>
 );
