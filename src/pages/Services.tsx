@@ -222,7 +222,7 @@ const Services = () => {
                 <CardHeader>
                   <CardTitle className="text-tech-cyan">Book Service: {selectedService.name}</CardTitle>
                   <CardDescription>
-                    Investment: ₹{convertToINR(selectedService.price)} | Duration: {selectedService.duration_hours} hours
+                    Investment: ₹{150} | Duration: {selectedService.duration_hours} hours
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
