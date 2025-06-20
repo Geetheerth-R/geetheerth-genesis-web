@@ -62,7 +62,7 @@ const About = () => {
                         decoding="async"
                       />
                     </div>
-                    <h3 className="text-lg font-medium">Bachelor of Engineering in Computer Science & Engineering</h3>
+                    <h3 className="text-lg font-medium">B.E in Computer Science & Engineering</h3>
                   </div>
                   <p className="text-muted-foreground">Sathyabama Institute of Science and Technology • 2021 - 2025</p>
                   <p className="text-sm mt-2">Core subjects include Data Structures, Algorithms, Database Systems, Computer Networks, and Software Engineering.</p>

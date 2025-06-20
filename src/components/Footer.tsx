@@ -15,7 +15,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="mt-2 text-sm text-muted-foreground max-w-xs my-[16px]">
-              Computer Science & Engineering student passionate about building innovative solutions.
+              Computer Science & Engineering Graduate passionate about building innovative solutions.
             </p>
           </div>
 
