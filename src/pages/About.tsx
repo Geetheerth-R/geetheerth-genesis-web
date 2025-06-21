@@ -1,9 +1,16 @@
-
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const About = () => {
+  const navigate = useNavigate();
+
+  const handleFreelancingClick = () => {
+    navigate("/auth");
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -121,6 +128,19 @@ const About = () => {
                   <div className="bg-secondary p-4 rounded-lg">
                     <h3 className="font-medium mb-2">Problem Solving</h3>
                     <p className="text-sm text-muted-foreground">Participating in challenges and competitions.</p>
+                  </div>
+                  <div className="bg-secondary p-4 rounded-lg col-span-1 sm:col-span-2">
+                    <h3 className="font-medium mb-2">Freelancing</h3>
+                    <p className="text-sm text-muted-foreground mb-3">
+                      Offering professional services including Technical Consulting, Web App Development, IoT Projects, and AI Solutions to help businesses achieve their technology goals.
+                    </p>
+                    <Button 
+                      onClick={handleFreelancingClick}
+                      className="bg-gradient-to-r from-tech-blue to-tech-purple hover:opacity-90 text-white"
+                      size="sm"
+                    >
+                      Book Services
+                    </Button>
                   </div>
                 </div>
               </div>

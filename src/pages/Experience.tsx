@@ -74,17 +74,7 @@ const Experience = () => {
                     
                     <div className="bg-dark-100 p-5 rounded-lg shadow-md">
                       <div className="flex flex-wrap justify-between items-start mb-2">
-                        <div className="flex items-center gap-3">
-                          {exp.companyLogo && (
-                            <img 
-                              src={exp.companyLogo} 
-                              alt={`${exp.company} logo`}
-                              className="w-6 h-6 object-contain rounded"
-                              loading="eager"
-                              fetchPriority="high"
-                              decoding="async"
-                            />
-                          )}
+                        <div>
                           <h3 className="text-lg font-semibold">{exp.title}</h3>
                         </div>
                         <Badge variant="outline" className="text-xs">
@@ -92,7 +82,19 @@ const Experience = () => {
                           {exp.period}
                         </Badge>
                       </div>
-                      <p className="text-tech-blue font-medium text-sm mb-3">{exp.company}</p>
+                      <div className="flex items-center gap-3 mb-3">
+                        {exp.companyLogo && (
+                          <img 
+                            src={exp.companyLogo} 
+                            alt={`${exp.company} logo`}
+                            className="w-6 h-6 object-contain rounded"
+                            loading="eager"
+                            fetchPriority="high"
+                            decoding="async"
+                          />
+                        )}
+                        <p className="text-tech-blue font-medium text-sm">{exp.company}</p>
+                      </div>
                       <p className="text-muted-foreground text-sm mb-4">{exp.description}</p>
                       
                       <div className="flex flex-wrap gap-2">
