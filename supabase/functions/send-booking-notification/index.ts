@@ -59,8 +59,15 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    // Convert USD to INR for display
-    const priceInINR = Math.round(service_price * 83);
+    const formatPrice = (name: string, price: number) => {
+      if (name === "Technical Consulting") {
+        return `₹${price} for 15 mins`;
+      } else if (name === "IoT Projects") {
+        return `₹${price} service charge + components TBD`;
+      } else {
+        return `₹${price}`;
+      }
+    };
 
     const formattedDate = new Date(booking_date).toLocaleDateString('en-IN', {
       weekday: 'long',
@@ -70,7 +77,9 @@ const handler = async (req: Request): Promise<Response> => {
     });
 
     let formattedTime;
-    if (service_name === "Technical Consulting") {
+    let isConsultation = service_name === "Technical Consulting";
+    
+    if (isConsultation) {
       formattedTime = new Date(`${booking_date}T${booking_time}`).toLocaleTimeString('en-IN', {
         hour: 'numeric',
         minute: '2-digit',
@@ -90,17 +99,19 @@ const handler = async (req: Request): Promise<Response> => {
     const emailToProvider = await resend.emails.send({
       from: "Service Booking <onboarding@resend.dev>",
       to: ["geetheerth@gmail.com"],
-      subject: `New Service Booking: ${service_name}`,
+      subject: `New ${isConsultation ? 'Consultation' : 'Project'} Booking: ${service_name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
-          <h2 style="color: #4263eb; border-bottom: 2px solid #4263eb; padding-bottom: 10px;">New Service Booking Received</h2>
+          <h2 style="color: #4263eb; border-bottom: 2px solid #4263eb; padding-bottom: 10px;">
+            New ${isConsultation ? 'Consultation' : 'Project'} Booking Received
+          </h2>
           
           <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
             <h3 style="color: #495057; margin-top: 0;">Service Details</h3>
             <p><strong>Service:</strong> ${service_name}</p>
-            <p><strong>Investment:</strong> ₹${priceInINR} (${service_price} USD)</p>
-            <p><strong>${service_name === "Technical Consulting" ? "Consultation Date" : "Project Start Date"}:</strong> ${formattedDate}</p>
-            <p><strong>${service_name === "Technical Consulting" ? "Consultation Time" : "Expected Delivery"}:</strong> ${formattedTime}</p>
+            <p><strong>Investment:</strong> ${formatPrice(service_name, service_price)}</p>
+            <p><strong>${isConsultation ? "Consultation Date" : "Project Start Date"}:</strong> ${formattedDate}</p>
+            <p><strong>${isConsultation ? "Consultation Time" : "Expected Delivery"}:</strong> ${formattedTime}</p>
           </div>
 
           <div style="background-color: #e3f2fd; padding: 20px; border-radius: 8px; margin: 20px 0;">
@@ -111,7 +122,9 @@ const handler = async (req: Request): Promise<Response> => {
 
           ${notes ? `
           <div style="background-color: #fff3e0; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #f57c00; margin-top: 0;">Project Requirements & Specifications</h3>
+            <h3 style="color: #f57c00; margin-top: 0;">
+              ${isConsultation ? 'Discussion Topics & Questions' : 'Project Requirements & Specifications'}
+            </h3>
             <p style="white-space: pre-wrap;">${notes}</p>
           </div>
           ` : ''}
@@ -119,10 +132,12 @@ const handler = async (req: Request): Promise<Response> => {
           <div style="margin-top: 30px; padding: 20px; background-color: #e8f5e8; border-radius: 8px;">
             <p style="margin: 0; color: #2e7d32;"><strong>Next Steps:</strong></p>
             <ul style="color: #2e7d32; margin: 10px 0;">
-              <li>Contact the client at ${user_email} to confirm the booking</li>
-              <li>Discuss project requirements and deliverables</li>
-              <li>Send project proposal and timeline</li>
-              <li>Schedule the work in your calendar</li>
+              <li>Contact the client at ${user_email} to confirm the ${isConsultation ? 'consultation' : 'project'}</li>
+              ${isConsultation ? 
+                '<li>Schedule the consultation call at the requested time</li>' :
+                '<li>Discuss project requirements and deliverables in detail</li><li>Send project proposal and timeline</li>'
+              }
+              <li>Add to your calendar and prepare accordingly</li>
             </ul>
           </div>
           
@@ -137,35 +152,36 @@ const handler = async (req: Request): Promise<Response> => {
     const emailToClient = await resend.emails.send({
       from: "Geetheerth R <onboarding@resend.dev>",
       to: [user_email],
-      subject: `Service Booking Confirmation: ${service_name}`,
+      subject: `${isConsultation ? 'Consultation' : 'Service'} Booking Confirmation: ${service_name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
-          <h2 style="color: #4263eb;">Service Booking Confirmation</h2>
+          <h2 style="color: #4263eb;">${isConsultation ? 'Consultation' : 'Service'} Booking Confirmation</h2>
           <p>Dear ${user_name},</p>
-          <p>Thank you for choosing my professional services! I'm excited to work with you on your project.</p>
+          <p>Thank you for choosing my professional services! I'm excited to ${isConsultation ? 'consult with you' : 'work with you on your project'}.</p>
           
           <div style="background-color: #f5f5f5; padding: 20px; border-left: 4px solid #4263eb; margin: 20px 0;">
             <h3 style="margin-top: 0; color: #4263eb;">Your Booking Details</h3>
             <p><strong>Service:</strong> ${service_name}</p>
-            <p><strong>Investment:</strong> ₹${priceInINR}</p>
-            <p><strong>${service_name === "Technical Consulting" ? "Consultation Date" : "Project Start Date"}:</strong> ${formattedDate}</p>
-            <p><strong>${service_name === "Technical Consulting" ? "Consultation Time" : "Expected Delivery"}:</strong> ${formattedTime}</p>
-            ${notes ? `<p><strong>Requirements:</strong> ${notes}</p>` : ''}
+            <p><strong>Investment:</strong> ${formatPrice(service_name, service_price)}</p>
+            <p><strong>${isConsultation ? "Consultation Date" : "Project Start Date"}:</strong> ${formattedDate}</p>
+            <p><strong>${isConsultation ? "Consultation Time" : "Expected Delivery"}:</strong> ${formattedTime}</p>
+            ${notes ? `<p><strong>${isConsultation ? 'Discussion Topics' : 'Requirements'}:</strong> ${notes}</p>` : ''}
           </div>
 
           <div style="background-color: #e8f5e8; padding: 15px; border-radius: 8px; margin: 20px 0;">
             <p style="margin: 0; color: #2e7d32;"><strong>What happens next?</strong></p>
             <ul style="color: #2e7d32;">
               <li>I'll reach out to you within 24 hours to confirm the booking</li>
-              <li>We'll discuss your project requirements in detail</li>
-              <li>I'll provide a comprehensive project proposal and timeline</li>
-              <li>We'll schedule the work according to your preferred timeline</li>
+              ${isConsultation ? 
+                '<li>We\'ll have a focused consultation session at your preferred time</li><li>I\'ll provide professional guidance and recommendations</li>' :
+                '<li>We\'ll discuss your project requirements in detail</li><li>I\'ll provide a comprehensive project proposal and timeline</li><li>We\'ll schedule the work according to your preferred timeline</li>'
+              }
             </ul>
           </div>
 
           <p>If you have any questions or need to make changes to your booking, please reply to this email or contact me directly.</p>
           
-          <p>Looking forward to working with you!</p>
+          <p>Looking forward to ${isConsultation ? 'our consultation' : 'working with you'}!</p>
           
           <p>Best regards,<br/>
           <strong>Geetheerth R</strong><br/>

@@ -84,7 +84,7 @@ const Services = () => {
     if (!bookingData.booking_date || !bookingData.booking_time) {
       toast({
         title: "Error",
-        description: "Please provide both booking date and delivery expectation date",
+        description: "Please provide all required fields",
         variant: "destructive"
       });
       return;
@@ -138,7 +138,6 @@ const Services = () => {
 
       if (emailError) {
         console.error('Email notification error:', emailError);
-        // Don't throw here - booking was successful even if email failed
         toast({
           title: "Booking Confirmed!",
           description: "Your service has been booked successfully. However, there was an issue sending the confirmation email."
@@ -174,9 +173,36 @@ const Services = () => {
     navigate("/");
   };
 
-  // Convert USD to INR (approximate rate)
-  const convertToINR = (usdPrice: number) => {
-    return Math.round(usdPrice * 83); // Approximate conversion rate
+  const formatPrice = (service: Service) => {
+    if (service.name === "Technical Consulting") {
+      return `₹${service.price} for 15 mins`;
+    } else if (service.name === "IoT Projects") {
+      return `₹${service.price} service charge + components TBD`;
+    } else {
+      return `₹${service.price}`;
+    }
+  };
+
+  const getBookingLabels = (serviceName: string) => {
+    if (serviceName === "Technical Consulting") {
+      return {
+        dateLabel: "Preferred Consultation Date",
+        timeLabel: "Preferred Time",
+        dateType: "date" as const,
+        timeType: "time" as const,
+        notesLabel: "Discussion Topics & Questions",
+        notesPlaceholder: "Please describe what you'd like to discuss during the consultation session..."
+      };
+    } else {
+      return {
+        dateLabel: "Project Commencement Date",
+        timeLabel: "Expected Delivery Date",
+        dateType: "date" as const,
+        timeType: "date" as const,
+        notesLabel: "Project Requirements & Specifications",
+        notesPlaceholder: "Please provide detailed requirements, scope of work, specific deliverables, and any technical specifications for your project..."
+      };
+    }
   };
 
   if (loading) {
@@ -222,7 +248,7 @@ const Services = () => {
                 <CardHeader>
                   <CardTitle className="text-tech-cyan">Book Service: {selectedService.name}</CardTitle>
                   <CardDescription>
-                    Investment: ₹{150} | Duration: {selectedService.duration_hours} hours
+                    Investment: {formatPrice(selectedService)}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -231,10 +257,10 @@ const Services = () => {
                       <div>
                         <label className="block text-sm font-medium mb-2">
                           <Calendar className="inline mr-2 h-4 w-4" />
-                          {selectedService.name === "Technical Consulting" ? "Preferred Date" : "Project Commencement Date"}
+                          {getBookingLabels(selectedService.name).dateLabel}
                         </label>
                         <Input
-                          type="date"
+                          type={getBookingLabels(selectedService.name).dateType}
                           value={bookingData.booking_date}
                           onChange={(e) => setBookingData(prev => ({ ...prev, booking_date: e.target.value }))}
                           min={new Date().toISOString().split('T')[0]}
@@ -246,10 +272,10 @@ const Services = () => {
                       <div>
                         <label className="block text-sm font-medium mb-2">
                           <Clock className="inline mr-2 h-4 w-4" />
-                          {selectedService.name === "Technical Consulting" ? "Preferred Time" : "Expected Delivery Timeline"}
+                          {getBookingLabels(selectedService.name).timeLabel}
                         </label>
                         <Input
-                          type={selectedService.name === "Technical Consulting" ? "time" : "date"}
+                          type={getBookingLabels(selectedService.name).timeType}
                           value={bookingData.booking_time}
                           onChange={(e) => setBookingData(prev => ({ ...prev, booking_time: e.target.value }))}
                           min={selectedService.name !== "Technical Consulting" ? new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString().split('T')[0] : undefined}
@@ -261,12 +287,12 @@ const Services = () => {
 
                     <div>
                       <label className="block text-sm font-medium mb-2">
-                        Project Requirements & Specifications
+                        {getBookingLabels(selectedService.name).notesLabel}
                       </label>
                       <Textarea
                         value={bookingData.notes}
                         onChange={(e) => setBookingData(prev => ({ ...prev, notes: e.target.value }))}
-                        placeholder="Please provide detailed requirements, scope of work, specific deliverables, and any technical specifications for your project..."
+                        placeholder={getBookingLabels(selectedService.name).notesPlaceholder}
                         rows={4}
                         className="bg-dark-200 border-dark-300"
                       />
@@ -319,12 +345,14 @@ const Services = () => {
                     <div className="space-y-3">
                       <div className="flex items-center text-tech-green">
                         <IndianRupee className="mr-2 h-4 w-4" />
-                        <span className="text-xl font-bold">₹{convertToINR(service.price)}</span>
+                        <span className="text-xl font-bold">{formatPrice(service)}</span>
                       </div>
-                      <div className="flex items-center text-muted-foreground">
-                        <Clock className="mr-2 h-4 w-4" />
-                        <span>{service.duration_hours} hours</span>
-                      </div>
+                      {service.name === "Technical Consulting" && (
+                        <div className="flex items-center text-muted-foreground">
+                          <Clock className="mr-2 h-4 w-4" />
+                          <span>15 minutes consultation</span>
+                        </div>
+                      )}
                       <Button
                         onClick={() => handleServiceSelect(service)}
                         className="w-full bg-gradient-to-r from-tech-blue to-tech-purple hover:opacity-90"
