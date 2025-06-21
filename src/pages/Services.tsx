@@ -79,7 +79,10 @@ const Services = () => {
   const handleBookingSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!selectedService || !user) return;
+    if (!selectedService || !user) {
+      console.error('Missing required data:', { selectedService, user });
+      return;
+    }
     
     if (!bookingData.booking_date || !bookingData.booking_time) {
       toast({
@@ -99,6 +102,16 @@ const Services = () => {
         booking_data: bookingData
       });
 
+      // For Technical Consulting, booking_time should be time format
+      // For other services, booking_time should be date format
+      let formattedBookingTime = bookingData.booking_time;
+      
+      if (selectedService.name !== "Technical Consulting") {
+        // For other services, we're using date input for delivery date
+        // Convert to time format that database expects
+        formattedBookingTime = "09:00:00"; // Default time for project delivery
+      }
+
       // Create booking
       const { data: bookingResult, error: bookingError } = await supabase
         .from('bookings')
@@ -106,15 +119,16 @@ const Services = () => {
           user_id: user.id,
           service_id: selectedService.id,
           booking_date: bookingData.booking_date,
-          booking_time: bookingData.booking_time,
-          notes: bookingData.notes
+          booking_time: formattedBookingTime,
+          notes: bookingData.notes || '',
+          status: 'pending'
         })
         .select()
         .single();
 
       if (bookingError) {
         console.error('Booking creation error:', bookingError);
-        throw bookingError;
+        throw new Error(`Booking failed: ${bookingError.message}`);
       }
 
       console.log('Booking created successfully:', bookingResult);
@@ -127,7 +141,7 @@ const Services = () => {
         service_price: selectedService.price,
         booking_date: bookingData.booking_date,
         booking_time: bookingData.booking_time,
-        notes: bookingData.notes
+        notes: bookingData.notes || ''
       };
 
       console.log('Sending email notification with payload:', emailPayload);
@@ -156,11 +170,11 @@ const Services = () => {
         booking_time: "",
         notes: ""
       });
-    } catch (error) {
+    } catch (error: any) {
       console.error('Booking process error:', error);
       toast({
         title: "Booking Failed",
-        description: `Failed to book the service: ${error.message || 'Unknown error'}. Please try again.`,
+        description: error?.message || 'An unexpected error occurred. Please try again.',
         variant: "destructive"
       });
     } finally {
@@ -169,8 +183,20 @@ const Services = () => {
   };
 
   const handleSignOut = async () => {
-    await signOut();
-    navigate("/");
+    try {
+      await signOut();
+      // Clear any cached data
+      setServices([]);
+      setSelectedService(null);
+      setBookingData({
+        booking_date: "",
+        booking_time: "",
+        notes: ""
+      });
+      navigate("/");
+    } catch (error) {
+      console.error('Sign out error:', error);
+    }
   };
 
   const formatPrice = (service: Service) => {
