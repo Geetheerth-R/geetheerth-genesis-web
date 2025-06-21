@@ -148,7 +148,7 @@ const About = () => {
               <div className="bg-card rounded-xl p-6 shadow-md">
                 <h2 className="text-2xl font-semibold mb-4 text-tech-cyan">Personal Interests</h2>
                 <p>
-                  Beyond academics, I enjoy exploring open-source projects, participating in hackathons, and contributing to the tech community. I'm also interested in digital art, playing chess, and staying updated with the latest advancements in technology and computing.
+                  Beyond academics, I enjoy exploring open-source projects, participating in hackathons, and contributing to the tech community. I'm also interested in singing, playing piano, and staying updated with the latest advancements in technology and computing.
                 </p>
               </div>
             </div>

@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -18,6 +17,9 @@ import Auth from "./pages/Auth";
 import Services from "./pages/Services";
 import NotFound from "./pages/NotFound";
 import WindTunnelDetails from "./pages/WindTunnelDetails";
+import AgriPulseDetails from "./pages/AgriPulseDetails";
+import FireSecurityDetails from "./pages/FireSecurityDetails";
+import ChatbotDetails from "./pages/ChatbotDetails";
 import { ChatProvider } from "./context/ChatContext";
 import { AuthProvider } from "./context/AuthContext";
 
@@ -40,6 +42,9 @@ const AnimatedRoutes = () => {
           <Route path="/auth" element={<Auth />} />
           <Route path="/services" element={<Services />} />
           <Route path="/wind-tunnel-details" element={<WindTunnelDetails />} />
+          <Route path="/agripulse-details" element={<AgriPulseDetails />} />
+          <Route path="/fire-security-details" element={<FireSecurityDetails />} />
+          <Route path="/chatbot-details" element={<ChatbotDetails />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </AnimatePresence>

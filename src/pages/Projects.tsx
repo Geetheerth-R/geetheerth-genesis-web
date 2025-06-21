@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -38,7 +39,7 @@ const projects = [{
   tech: ["Python", "Flask", "AI"],
   image: "/lovable-uploads/chatbot.jpg", 
   github: "https://github.com",
-  demo: "https://demo.com",
+  moreInfo: "/chatbot-details",
   featured: true,
   domains: ["ai"]
 }, {
@@ -47,6 +48,7 @@ const projects = [{
   tech: ["Microcontroller", "Sensors and Actuators", "C++", "Blynk"],
   image: "/lovable-uploads/fire.jpg", 
   github: "https://github.com",
+  moreInfo: "/fire-security-details",
   featured: true,
   domains: ["iot"]
 }, {
@@ -55,7 +57,7 @@ const projects = [{
   tech: ["JavaScript", "AI", "C++"],
   image: "/lovable-uploads/ee3580d7-5395-4bba-8660-f7aeddc6f247.png",
   github: "https://github.com",
-  demo: "https://demo.com",
+  moreInfo: "/agripulse-details",
   featured: true,
   domains: ["iot", "ai"]
 }, {
@@ -162,12 +164,14 @@ const Projects = () => {
                                     </a>
                                   </Button>
                                 )}
-                                {project.demo && (
-                                  <Button asChild size="sm" className="rounded-lg transition-all duration-300 hover:scale-105">
-                                    <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                                      <ExternalLink className="mr-2 h-4 w-4" />
-                                      Live Demo
-                                    </a>
+                                {project.moreInfo && (
+                                  <Button 
+                                    size="sm" 
+                                    className="rounded-lg transition-all duration-300 hover:scale-105"
+                                    onClick={() => navigate(project.moreInfo)}
+                                  >
+                                    <ExternalLink className="mr-2 h-4 w-4" />
+                                    More Info
                                   </Button>
                                 )}
                                 {project.knowMore && (
