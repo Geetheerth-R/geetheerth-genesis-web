@@ -1,3 +1,4 @@
+
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -139,7 +140,7 @@ const About = () => {
                       className="bg-gradient-to-r from-tech-blue to-tech-purple hover:opacity-90 text-white"
                       size="sm"
                     >
-                      Book Services
+                      Enquire Now
                     </Button>
                   </div>
                 </div>
