@@ -7,7 +7,7 @@ const experiences = [{
   title: "SAP Intern",
   company: "Titan Company.Ltd",
   period: "September 2024 - October 2024",
-  description: "Learnt about the SAP working and the Supply chain management process.",
+  description: "During my internship at Titan Company Limited, I gained hands-on exposure to SAP ERP systems with a focus on Supply Chain Management (SCM) processes in a real-world enterprise environmen",
   type: "work",
   skills: ["ERP", "Supply Chain Management", "SAP"],
   companyLogo: "/lovable-uploads/titanlogo.png"
