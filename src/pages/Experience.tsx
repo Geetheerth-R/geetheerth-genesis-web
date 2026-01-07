@@ -7,7 +7,13 @@ const experiences = [{
   title: "SAP Intern",
   company: "Titan Company.Ltd",
   period: "September 2024 - October 2024",
-  description: "During my internship at Titan Company Limited, I gained hands-on exposure to SAP ERP systems with a focus on Supply Chain Management (SCM) processes in a real-world enterprise environmen",
+  description: "During my internship at Titan Company Limited, I gained hands-on exposure to SAP ERP systems with a focus on Supply Chain Management (SCM) processes in a real-world enterprise environment.
+
+I developed a practical understanding of end-to-end supply chain workflows, including procurement, inventory management, material planning, production coordination, and order fulfillment. I learned how SAP integrates various business functions to enable data-driven decision-making, real-time tracking, and process optimization across the supply chain.
+
+Throughout the internship, I worked with SAP modules related to SCM, analyzed transactional data, and observed how standardized SAP processes help improve operational efficiency, demand planning, vendor coordination, and stock control. I also gained insights into enterprise best practices, compliance standards, and cross-functional collaboration between business and technical teams.
+
+This experience strengthened my understanding of how ERP systems bridge technology and business operations, and enhanced my ability to analyze processes, identify inefficiencies, and appreciate the role of SAP in managing large-scale manufacturing and retail supply chains.",
   type: "work",
   skills: ["ERP", "Supply Chain Management", "SAP"],
   companyLogo: "/lovable-uploads/titanlogo.png"
